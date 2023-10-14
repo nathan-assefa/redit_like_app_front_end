@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Poppins:wght@400;700&display=swap");
+
+:root {
+  --grayish-color: #b1aeae;
+}
+
+.option-area {
+  position: relative;
+}
+
+.select {
+  background: var(--grayish-color);
+  width: 426px;
+  height: 50px;
+  font-size: 27px;
+  color: #545454;
+  font-family: "IBM+Plex+Sans";
+  margin-bottom: 2em;
+  border-radius: 9px;
+  padding-left: 1.2rem;
+  margin-left: 3em;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.select-icon {
+  position: absolute;
+  top: 1em;
+  left: 29em;
+  z-index: 999;
+}
+
+.comments-title {
+  margin-bottom: 0.5rem;
+}
+
+.post-form-row {
+  position: relative;
+  margin-bottom: 2em;
+}
+
+.post-form-row .post-title {
+  display: block;
+  resize: none;
+  width: 40%;
+  height: 70px;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  margin-left: 4.9em;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: 1.4;
+  background: var(--grayish-color);
+  color: black;
+}
+
+.post-form-row .post-content {
+  display: block;
+  resize: none;
+  width: 60%;
+  height: 310px;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  margin-left: 4.9em;
+  margin-top: 1em;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: 1.4;
+  background: var(--grayish-color);
+  color: black;
+}
+
+.post-input:focus {
+  border-color: hsl(235, 100%, 67%);
+  outline: none;
+}
+
+.post-submit {
+  position: absolute;
+  bottom: 1em;
+  right: 22em;
+  margin-left: 10em;
+  padding: 6px 18px;
+  border-radius: 20px;
+  background: #969292;
+  font-size: 22px;
+  font-family: inherit;
+  display: flex;
+  border: none;
+  align-items: center;
+  color: rgb(197, 187, 187);
+  cursor: pointer;
+}

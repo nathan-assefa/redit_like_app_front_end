@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+:root {
+  --grayish-color: #817f7f;
+}
+
+body {
+  background: #515050;
+  font-family: "Poppins";
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  padding: 2em;
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 4em;
+  /* justify-content: space-between; */
+}
+
+.icon {
+  width: 31px;
+  height: 31px;
+}
+
+.log {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.home-menu {
+  width: 200px;
+  height: 51px;
+  margin-left: 3em;
+  border: 0.13em solid var(--grayish-color);
+  display: flex;
+  align-items: center;
+  padding-left: 0.5em;
+  padding-right: 1em;
+  border-radius: 10px;
+}
+
+.home-menu-icon {
+  color: #bdbaba;
+}
+
+.home {
+  margin-left: 0.6em;
+  font-weight: bold;
+  color: #bdbaba;
+  font-size: 1.2em;
+}
+
+.option-icon {
+  margin-left: auto;
+}
+
+.search-header {
+  width: 290px;
+  height: 51px;
+  background: #3c3737;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5em;
+  padding-right: 1em;
+  border-radius: 10px;
+  margin-left: 1.6em;
+}
+
+.magnifier {
+  margin-left: 0.4em;
+  margin-top: 0.5em;
+}
+
+.header-icons {
+  margin-left: auto;
+  margin-right: 7em;
+  display: flex;
+  width: 25%;
+  justify-content: space-around;
+}
+
+.header-icons .icon {
+  width: 51px;
+  height: 51px;
+  background-color: #615f5f;
+  border-radius: 10px;
+}
+
+.btn {
+  /* --hue: 235; */
+  /* --color: hsl(var(--hue), 100%, 67%); */
+  padding: 0.5em 1em;
+  /* background: var(--color); */
+  border: none;
+  color: white;
+  border-radius: 0.5em;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  --color: hsl(var(--hue), 100%, 74%);
+}
+
+.btn.icon-btn {
+  background: none;
+
+  padding: 0.25em;
+  display: flex;
+  align-items: center;
+  color: #bdbaba;
+  position: relative;
+}
+
+.count {
+  font-size: 1.5rem;
+  /* color: var(--color);
+  position: absolute;
+  top: 0;
+  right: 3px;
+  background: #ff4500;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  text-align: center; */
+}

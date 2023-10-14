@@ -1,85 +1,50 @@
-import React, {
-    useEffect,
-    createContext,
-    useContext,
-    useReducer
-} from 'react';
-import { Post }  from '../types'
-import { useAuth } from './AuthContext'
-import AuthToken from '../utils/AuthToken'
+import React, { createContext, useContext } from "react";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import UseNestedComments from "../utils/NestedComment";
+import { Post, Comment } from "../types";
 
-// const authRelatedData = localStorage.getItem('authTokens');
-// const initialAuthToken = authRelatedData ? JSON.parse(authRelatedData) : null;
-// const initialUser = initialAuthToken
-// ? initialAuthToken.access
-// : null;
+import { getPosts } from "../utils/posts";
 
 const UsePostSource = (): {
-  post: Post[];
+  post: Post | undefined;
+  postId: string | undefined;
+  rootComments: Comment[];
+  getReplies: (parentId: string) => Comment[];
 } => {
-  type PostState = {
-    post: Post[];
-  }
+  const { id: postId } = useParams();
 
-  type PostAction = { type: "setPost"; payload: Post[] };
-
-  const reducer = (state: PostState, action: PostAction) => {
-    switch (action.type) {
-      case "setPost":
-        return { ...state, post: action.payload };
-      default:
-        return state;
-    }
-  }
-
-  const [{ post }, dispatch] = useReducer(reducer, {
-    post: [],
+  const { data: post } = useQuery<Post[]>(["post"], () => getPosts(), {
+    initialData: [],
   });
 
-  const {logOutUser} = useAuth()
+  const postData = post?.find((p) => p.id === +postId!);
+  const commentByParentId = postData ? UseNestedComments(postData) : {};
 
-  useEffect(() => {
-    getPosts()
-  }, [])
+  const getReplies = (parentId: string) => {
+    return commentByParentId[parentId];
+  };
 
-  let getPosts = async() =>{
-    let response = await fetch('http://localhost:8000/api/posts/', {
-        method:'GET',
-        headers:{
-            'Content-Type':'application/json',
-            'Authorization':'Bearer ' + String(AuthToken())
-        }
-    })
-    let data = await response.json()
-
-    if(response.status === 200){
-        dispatch({ type: "setPost", payload: data })
-    }else if(response.statusText === 'Unauthorized'){
-        logOutUser()
-    }
-}
-  console.log(post)
-
-  return { post };
-}
-
+  return {
+    post: postData,
+    postId,
+    rootComments: commentByParentId["parent"] || [],
+    getReplies,
+  };
+};
 
 const PostContext = createContext<ReturnType<typeof UsePostSource>>(
   {} as ReturnType<typeof UsePostSource>
 );
 
-export const UsePost = () => useContext(PostContext)
+export const usePost = () => {
+  return useContext(PostContext);
+};
 
-export function PostProvider({
-    children
-}: {
-    children: React.ReactNode
-}) {
-return (
-    <div>
-      <PostContext.Provider value={UsePostSource()}>
-        {children}
-      </PostContext.Provider>
-    </div>
-    )
-}
+export const PostProvider = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <PostContext.Provider value={UsePostSource()}>
+      {children}
+    </PostContext.Provider>
+  );
+};

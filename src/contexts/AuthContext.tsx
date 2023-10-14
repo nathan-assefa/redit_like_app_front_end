@@ -1,6 +1,6 @@
-import React, { useState, createContext, useContext } from 'react';
-import jwt_decode from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, createContext, useContext } from "react";
+import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 type AuthContextType = {
   loginUser: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -21,24 +21,26 @@ type AuthProviderProps = {
 export function AuthProvider({ children }: AuthProviderProps) {
   const navigate = useNavigate();
 
-  const authRelatedData = localStorage.getItem('authTokens');
+  const authRelatedData = localStorage.getItem("authTokens");
   const initialAuthToken = authRelatedData ? JSON.parse(authRelatedData) : null;
   const initialUser = initialAuthToken
-  ? jwt_decode<{username: string}>(initialAuthToken.access).username
-  : null;
+    ? jwt_decode<{ username: string }>(initialAuthToken.access).username
+    : null;
 
   const [authToken, setAuthToken] = useState<string | null>(initialAuthToken);
   const [user, setUser] = useState<string | null>(initialUser);
 
-  const loginUser = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const loginUser = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
 
     const form = e.target as HTMLFormElement;
 
-    const response = await fetch('http://localhost:8000/api/token/', {
-      method: 'POST',
+    const response = await fetch("http://localhost:8000/api/token/", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username: form.username.value,
@@ -51,18 +53,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const accessToken = data.access;
       setAuthToken(accessToken);
       setUser(jwt_decode<{ username: string }>(accessToken).username);
-      localStorage.setItem('authTokens', JSON.stringify(data));
-      navigate('/');
+      localStorage.setItem("authTokens", JSON.stringify(data));
+      navigate("/");
     } else {
-      alert('Something went wrong');
+      alert("Something went wrong");
     }
   };
 
   const logOutUser = () => {
     setAuthToken(null);
     setUser(null);
-    localStorage.removeItem('authTokens');
-    navigate('/');
+    localStorage.removeItem("authTokens");
+    navigate("/");
   };
 
   const contextData = {
@@ -71,5 +73,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     username: user,
   };
 
-  return <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>
+  );
 }

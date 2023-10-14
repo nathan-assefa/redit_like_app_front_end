@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Noto+Sans+NKo+Unjoined&family=Poppins:wght@400;700&display=swap");
+
+.post-wrapper {
+  display: flex;
+  margin-left: 2em;
+}
+
+.single-post {
+  display: flex;
+}
+
+.post-container {
+  border: 1px solid #666161;
+  box-shadow: 0 0 3px rgba(44, 43, 43, 0.5);
+  background-color: #716c6c;
+  width: 650px;
+  height: auto;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-left: 4em;
+  margin-bottom: 1.2em;
+  position: relative;
+}
+
+.community-name {
+  font-family: "IBM+Plex+Sans" sans-serif;
+  color: rgb(172, 172, 172);
+  /* color: rgb(0, 235, 82); */
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 2.9em;
+  letter-spacing: 0.2rem;
+}
+
+.post-title {
+  font-family: "IBM+Plex+Sans";
+  color: white;
+  margin-left: 1.3em;
+  font-size: 24px;
+  margin-bottom: 0.2em;
+}
+
+.post-content {
+  font-family: "Noto+Sans";
+  color: rgb(209, 204, 204);
+  width: 600px;
+  height: auto;
+  margin-left: 1.8em;
+  font-size: 18px;
+  font-weight: lighter;
+  /* word-spacing: 2px; */
+  letter-spacing: 0.017rem;
+}
+
+.post-info {
+  display: flex;
+  margin-top: -0.2em;
+  margin-left: 2em;
+  color: #bdbaba;
+}
+
+.post-author {
+  color: #bdbaba;
+  font-size: 12px;
+}
+
+.divider {
+  margin: 0 8px;
+  color: #bdbaba;
+  font-size: 12px;
+}
+
+.post-date {
+  font-size: 12px;
+  color: #bdbaba;
+}
+
+.post-footer {
+  display: flex;
+  align-items: center;
+  margin-left: 1.4em;
+  margin-top: -1.5em;
+}
+
+.total-vote {
+  margin-top: 1em;
+  color: #b4abab;
+  font-size: 16px;
+}
+
+.custom-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.vote {
+  width: 20px;
+  height: 22px;
+}
+
+.comment-btn {
+  border: 1px solid;
+  display: flex;
+  border: 2px solid #948888;
+  width: 165px;
+  height: 30px;
+  margin-right: 1em;
+  margin-left: 2em;
+  border-radius: 9px;
+}
+
+.count-comment {
+  color: #a19c9c;
+  display: flex;
+  font-size: 16px;
+}
+
+.comment-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.save-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.save-btn {
+  display: flex;
+  border: 2px solid #a19c9c;
+  width: 90px;
+  height: 30px;
+  margin-right: 2em;
+  border-radius: 9px;
+}
+
+.save-btn p {
+  font-size: 16px;
+  color: #a19c9c;
+}
+
+.like-icon {
+  width: 18px;
+  height: 20px;
+}
+
+.love-icon {
+  width: 18px;
+  height: 20px;
+  margin-left: 0.3em;
+}
+
+.join-community {
+  background: #c9a527;
+  color: white;
+  font-weight: bold;
+  padding: 0.4em 0.8em;
+  border: none;
+  height: 30px;
+  border-radius: 10px;
+  margin-left: 2em;
+  display: flex;
+  align-items: center;
+}
+
+.create-post-and-community {
+  background-color: #716c6c;
+  width: 390px;
+  height: 330px;
+  margin-left: 3.5em;
+  border-radius: 50px;
+}
+
+.community-1 {
+  width: 390px;
+  height: 25%;
+  background-image: url("../images/1-community.jpg");
+  background-size: cover;
+  background-position-y: 22%;
+  border-radius: 50px 50px 0 0;
+}
+
+.create-post-and-community p {
+  color: white;
+  font-size: 19px;
+  font-family: "Poppins";
+  margin: 0.6em 1.1em;
+  text-align: left;
+}
+
+.create-post-and-community button {
+  display: block;
+  width: 88%;
+  height: 47px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 49px;
+  margin-bottom: 1em;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.on-community-create {
+  background: #c9a527;
+  border: none;
+}
+
+.on-post-create {
+  border: 2px solid #c9a527;
+  background: #716c6c;
+}
+
+.top-community-list {
+  background-color: #716c6c;
+  width: 390px;
+  height: 460px;
+  margin-left: 3.5em;
+  border-radius: 50px;
+  margin-top: 2.5em;
+}
+
+.community-2 {
+  width: 390px;
+  height: 25%;
+  background-image: url("../images/2-community.jpg");
+  background-size: cover;
+  background-position-y: 22%;
+  border-radius: 50px 50px 0 0;
+}

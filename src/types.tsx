@@ -1,25 +1,28 @@
 interface User {
-    first_name: string;
-    last_name: string;
-    email: string;
-  }
-  
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+}
+
 interface CommunityMembership {
-created_at: string; 
-updated_at: string;
-user: User;
-community: Community;
-joined_at: string;
+  created_at: string;
+  updated_at: string;
+  user: User;
+  community: Community;
+  joined_at: string;
 }
 
 export interface Community {
-id: number;
-created_at: string;
-updated_at: string;
-name: string;
-description: string;
-members: CommunityMembership[];
-moderators: User[];
+  id: number;
+  created_at: string;
+  updated_at: string;
+  name: string;
+  description: string;
+  members: CommunityMembership[];
+  moderators: User[];
+  posts: Post[];
+  owner: string;
 }
 
 export interface Post {
@@ -39,6 +42,7 @@ export interface Post {
   bookmarks: User[];
   liked_by: User[];
   loved_by: User[];
+  comments: Comment[];
 }
 
 export interface Comment {
@@ -48,11 +52,9 @@ export interface Comment {
   content: string;
   post: Post;
   author: User;
-  parent_comment: Comment | null;
+  parent_comment: string | null;
   upvoted_by: User[];
   downvoted_by: User[];
   likes: User[];
   loves: User[];
 }
-
-  

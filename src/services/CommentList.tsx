@@ -1,18 +1,16 @@
-import { UseComment } from '../contexts/CommentContext'
+import { Comment } from "../types";
+import SingleComment from "./Comment";
 
-export const CommentList = () => {
-    const { commment } = UseComment();
-    return (
-      <div>
-        {commment.map(c => (
-          <div key={c.id}>
-            {/* <div>Posted by {c.author.first_name.toUpperCase()}</div> */}
-            <div>{c.post.title}</div>
-            <div>{c.post.content}</div>
-            <div>{c.content}</div>
-            <hr />
-          </div>
-        ))}
-      </div>
-    )
-  }
+const Comments = ({ comments }: { comments: Comment[] }) => {
+  return (
+    <div>
+      {comments.map((comment) => (
+        <div key={comment.id}>
+          <SingleComment comment={comment} />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Comments;
