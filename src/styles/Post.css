@@ -104,7 +104,7 @@
   border: 1px solid;
   display: flex;
   border: 2px solid #948888;
-  width: 165px;
+  width: 135px;
   height: 30px;
   margin-right: 1em;
   margin-left: 2em;
@@ -115,6 +115,7 @@
   color: #a19c9c;
   display: flex;
   font-size: 16px;
+  margin-left: 0.3em;
 }
 
 .comment-icon {
@@ -139,6 +140,7 @@
 .save-btn p {
   font-size: 16px;
   color: #a19c9c;
+  margin-left: 0.3em;
 }
 
 .like-icon {

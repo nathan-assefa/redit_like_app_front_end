@@ -1,7 +1,7 @@
 const Setting = () => {
   return (
     <svg
-      className="custom-icon setting"
+      className="custom-icon top-icon setting"
       // width="31"
       // height="31"
       viewBox="0 0 31 31"

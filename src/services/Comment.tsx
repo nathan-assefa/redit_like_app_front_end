@@ -9,7 +9,7 @@ import Like from "../icons/Like";
 // import { BiBell } from "react-icons/bi";
 // import { FaArrowAltCircleUp, FaArrowAltCircleDown } from "react-icons/fa";
 // import ThickerArrowIcon from "../icons/UpvoteArrow";
-import IconBtn from "./IconBtn";
+import IconBtn from "./HeaderIconBtn";
 import { useState } from "react";
 import { usePost } from "../contexts/PostContext";
 import { createComment, updateComment, deleteComment } from "../utils/comments";

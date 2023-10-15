@@ -1,7 +1,7 @@
 const Notification = () => {
   return (
     <svg
-      className="custom-icon notification"
+      className="custom-icon top-icon notification"
       // width="31"
       // height="31"
       viewBox="0 0 31 31"

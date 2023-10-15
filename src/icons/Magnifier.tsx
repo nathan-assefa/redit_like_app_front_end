@@ -1,7 +1,7 @@
 const Magnifier = () => {
   return (
     <svg
-      className="custom-icon magnifier"
+      className="custom-icon mag-1"
       // width="20"
       // height="20"
       viewBox="0 0 20 20"

@@ -4,10 +4,11 @@ import HomeIcon from "../icons/HomeIcon";
 import OptionIcon from "../icons/OptionIcon";
 import Magnifier from "../icons/Magnifier";
 import CreatePost from "../icons/CreatePost";
-import Notification from "../icons/Notification";
+// import Notification from "../icons/Notification";
+import { AiOutlineBell } from "react-icons/ai";
 import Setting from "../icons/Setting";
 import { AiOutlineMessage } from "react-icons/ai";
-import IconBtn from "../services/IconBtn";
+import IconBtn from "../services/HeaderIconBtn";
 
 const Header = () => {
   const { username, logOutUser } = useAuth();
@@ -53,7 +54,7 @@ const Header = () => {
       </div>
       <header>
         <div className="container">
-          <Link to="#" className="log">
+          <Link to="#" className="logo">
             Opinion sphere
           </Link>
           <div className="home-menu">
@@ -66,24 +67,34 @@ const Header = () => {
             </div>
           </div>
           <div className="search-header">
-            <Magnifier />
+            <div className="magnifier">
+              <Magnifier />
+            </div>
           </div>
           <div className="header-icons">
-            <div className="icon create-post-icon">
-              <IconBtn Icon={CreatePost} aria-label="post" />
+            <div className="icon-wrapper">
+              <div className="icon create-post-icon">
+                <CreatePost />
+              </div>
             </div>
-            <div className="icon notification-icon">
-              <IconBtn Icon={Notification} aria-label="notification">
-                2
-              </IconBtn>
+            <div className="icon-wrapper">
+              <div className="icon notification-icon">
+                <IconBtn Icon={AiOutlineBell} aria-label="notification">
+                  <p>2</p>
+                </IconBtn>
+              </div>
             </div>
-            <div className="icon message-icon">
-              <IconBtn Icon={AiOutlineMessage} aria-label="message">
-                2
-              </IconBtn>
+            <div className="icon-wrapper">
+              <div className="icon message-icon">
+                <IconBtn Icon={AiOutlineMessage} aria-label="message">
+                  <p>2</p>
+                </IconBtn>
+              </div>
             </div>
-            <div className="icon setting-icon">
-              <IconBtn Icon={Setting} aria-label="setting" />
+            <div className="icon-wrapper">
+              <div className="icon setting-icon">
+                <Setting />
+              </div>
             </div>
           </div>
         </div>

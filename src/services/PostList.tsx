@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { getPosts } from "../utils/posts";
 import { useQuery } from "@tanstack/react-query";
 import { Post } from "../types";
-import IconBtn from "./IconBtn";
+import IconForContent from "./IconForContent";
 import UpvoteArrow from "../icons/UpvoteArrow";
 import DownvoteArrow from "../icons/DownvoteArrow";
 import LoveIcon from "../icons/Love";
@@ -37,9 +37,13 @@ export const PostList = () => {
             <div className="post-container">
               <div className="post-header">
                 <div className="community-name">{p.community.name}</div>
-                <div className="post-title">{p.title}</div>
+                <Link to={`/posts/${p.id}`}>
+                  <div className="post-title">{p.title}</div>
+                </Link>
               </div>
-              <div className="post-content">{p.content}</div>
+              <Link to={`/posts/${p.id}`}>
+                <div className="post-content">{p.content}</div>
+              </Link>
               <div className="post-info">
                 <p className="post-author">Posted by {p.author.first_name}</p>
                 <p className="post-date">
@@ -48,20 +52,20 @@ export const PostList = () => {
                 </p>
               </div>
               <div className="post-footer">
-                <IconBtn Icon={UpvoteArrow} aria-label="upvote" />
+                <IconForContent Icon={UpvoteArrow} aria-label="upvote" />
                 <p className="total-vote">800</p>
-                <IconBtn Icon={DownvoteArrow} aria-label="downvote" />
-                <IconBtn Icon={LoveIcon} aria-label="heart" />
-                <IconBtn Icon={Like} aria-label="like" />
+                <IconForContent Icon={DownvoteArrow} aria-label="downvote" />
+                <IconForContent Icon={LoveIcon} aria-label="heart" />
+                <IconForContent Icon={Like} aria-label="like" />
                 <div className="comment-btn">
-                  <IconBtn Icon={Comment} aria-label="comment">
+                  <IconForContent Icon={Comment} aria-label="comment">
                     <p className="count-comment">2 comments</p>
-                  </IconBtn>
+                  </IconForContent>
                 </div>
                 <div className="save-btn">
-                  <IconBtn Icon={SaveIcon} aria-label="saveIcon">
+                  <IconForContent Icon={SaveIcon} aria-label="saveIcon">
                     <p className="save-name">save</p>
-                  </IconBtn>
+                  </IconForContent>
                 </div>
                 <button className="join-community">Join</button>
               </div>
