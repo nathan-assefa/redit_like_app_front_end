@@ -38,3 +38,41 @@ export function getCommunitiesForOwnerOrMembers(
     },
   });
 }
+
+export function getTopCommunities(): Promise<Community[]> {
+  return fetchData(`${url}/top-communities/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}
+
+type CommunityMembership = {
+  member: boolean;
+};
+
+export function joinOrLeaveCommunity(
+  communityId: string
+): Promise<CommunityMembership> {
+  return fetchData(`${url}/join_or_leave_community/${communityId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}
+
+export function getMembershipStatus(
+  communityId: string
+): Promise<CommunityMembership> {
+  return fetchData(`${url}/get_membership_status/${communityId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}

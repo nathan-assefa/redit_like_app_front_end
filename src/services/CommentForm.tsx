@@ -32,7 +32,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
           onChange={(e) => setContent(e.target.value)}
         />
         <button className="" type="submit" disabled={isLoading}>
-          {isLoading ? "cancel" : "Post"}
+          {isLoading ? "cancel" : "Comment"}
         </button>
       </div>
       <div className="error" style={{ color: "red" }}>

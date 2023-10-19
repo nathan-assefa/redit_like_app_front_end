@@ -23,6 +23,7 @@ export interface Community {
   moderators: User[];
   posts: Post[];
   owner: string;
+  member_count: number;
 }
 
 export interface Post {
@@ -57,4 +58,31 @@ export interface Comment {
   downvoted_by: User[];
   likes: User[];
   loves: User[];
+}
+
+export interface Notification {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  recipient: User;
+  sender: User;
+  notification_type: string;
+  content: string;
+  timestamp: string;
+  is_read: boolean;
+}
+
+export interface Profile {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  user: User;
+  profile_picture: string | null; // File path or null
+  bio: string | null;
+  website: string | null;
+  location: string | null;
+  birthdate: string | null;
+  phone_number: string | null;
+  unread_messages_count: number;
+  unread_notifications_count: number;
 }

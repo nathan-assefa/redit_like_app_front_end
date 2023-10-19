@@ -1,47 +1,36 @@
 import { useCommunity } from "../contexts/CommunityContext";
-import { Link } from "react-router-dom";
+import PostsInCommunity from "./PostsListInCommunity";
+import TopCommunities from "./TopCommunities";
+import CommunityRules from "./CommunityRules";
+import JoinOrLeaveCommunity from "./JoinOrLeaveCommunity";
 
 export const Community = () => {
   const { community } = useCommunity();
   return (
-    <div>
-      <h1>{community?.name}</h1>
-      <h3>{community?.owner}</h3>
-      <p>{community?.description}</p>
-      {community?.posts?.map((p) => (
-        <div key={p.id}>
-          <div>
-            <span style={{ color: "green" }}>Community name</span>{" "}
-            {p.community.name}
-          </div>
-          <div>
-            <span style={{ color: "green" }}>Post author</span>{" "}
-            {p.author.first_name.toUpperCase()}
-          </div>
-          <div>
-            <span style={{ color: "green" }}>Post title</span> {p.title}
-          </div>
-          <div>
-            <span style={{ color: "green" }}>Post content</span> {p.content}
-          </div>
-          <div>
-            <Link to={`/posts/${p.id}`}>
-              <span style={{ color: "green" }}>Comment count</span>{" "}
-              {p.comment_count}
-            </Link>
-          </div>
-          <div>
-            <span style={{ color: "green" }}>Voted count</span> {p.voted_count}
-          </div>
-          <div>
-            <span style={{ color: "green" }}>Like count</span> {p.like_count}
-          </div>
-          <div>
-            <span style={{ color: "green" }}>Love count</span> {p.love_count}
-          </div>
-          <hr />
+    <div className="community-detail-wrapper">
+      <div className="community-detail">
+        <h1 className="c-name">{community?.name}</h1>
+        <p className="no-of-members">
+          community membership: {community?.member_count} members
+        </p>
+        <div className="c-join">
+          <JoinOrLeaveCommunity communityId={community?.id?.toString()!} />
         </div>
-      ))}
+        <p className="c-desctiption">
+          <span>Description: </span>
+          {community?.description}
+        </p>
+        <h3>Posts</h3>
+        <div>
+          {community?.posts != null && community?.posts.length > 0 && (
+            <PostsInCommunity posts={community?.posts} />
+          )}
+        </div>
+      </div>
+      <div className="top-c-lists">
+        <TopCommunities />
+        <CommunityRules />
+      </div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { usePost } from "../contexts/PostContext";
 import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
+import SinglePost from "./SinglePost";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createComment } from "../utils/comments";
@@ -13,17 +14,14 @@ export const Post = () => {
   }
 
   const createCommentMutation = useMutation((content: string) => {
-    // Calling createComment function with the content
     return createComment(postId, content);
   });
 
   const queryClient = useQueryClient();
 
-  // Function to handle form submission
   const handleCommentSubmit = async (content: string): Promise<void> => {
     try {
       await createCommentMutation.mutateAsync(content);
-      // Trigger a refetch of the comments query
       queryClient.invalidateQueries(["post"]);
     } catch (error) {
       Promise.reject(error);
@@ -32,10 +30,13 @@ export const Post = () => {
 
   return (
     <div>
-      <h1>{post.title}</h1>
-      <p>{post.content}</p>
-      <p>{post.author?.first_name}</p>
-      <h3>Comments</h3>
+      <div className="single-post">
+        <SinglePost post={post} />
+      </div>
+      <h3 className="comment-header">
+        Write your comment as{" "}
+        <span>{post.author.first_name.toLocaleLowerCase()}</span>
+      </h3>
       <br />
       <section>
         <div>
@@ -46,9 +47,11 @@ export const Post = () => {
             onSubmit={handleCommentSubmit}
           />
         </div>
-        {rootComments != null && rootComments.length > 0 && (
-          <CommentList comments={rootComments} />
-        )}
+        <div className="comment-wrapper">
+          {rootComments != null && rootComments.length > 0 && (
+            <CommentList comments={rootComments} />
+          )}
+        </div>
       </section>
     </div>
   );

@@ -1,15 +1,11 @@
 import { Comment } from "../types";
-import { FaHeart, FaEdit, FaTrash, FaReply } from "react-icons/fa";
+import { FaEdit, FaTrash, FaReply } from "react-icons/fa";
+import LoveIcon from "../icons/Love";
 import UpvoteArrow from "../icons/UpvoteArrow";
 import DownvoteArrow from "../icons/DownvoteArrow";
 import Like from "../icons/Like";
-// import { IoMdSettings } from "react-icons/io";
-// import { AiOutlineForm } from "react-icons/ai";
-// import { BiComment } from "react-icons/bi";
-// import { BiBell } from "react-icons/bi";
-// import { FaArrowAltCircleUp, FaArrowAltCircleDown } from "react-icons/fa";
-// import ThickerArrowIcon from "../icons/UpvoteArrow";
-import IconBtn from "./HeaderIconBtn";
+import IconBtn from "../IconButtons/HeaderIconBtn";
+import IconForContent from "../IconButtons/DownvoteButton";
 import { useState } from "react";
 import { usePost } from "../contexts/PostContext";
 import { createComment, updateComment, deleteComment } from "../utils/comments";
@@ -19,11 +15,7 @@ import jwt_decode from "jwt-decode";
 
 import Comments from "./CommentList";
 import CommentForm from "./CommentForm";
-
-const dateFormatter = new Intl.DateTimeFormat(undefined, {
-  dateStyle: "medium",
-  timeStyle: "short",
-});
+import TimeAgo from "../utils/getTimeAgo";
 
 const SingleComment = ({ comment }: { comment: Comment }) => {
   const { getReplies } = usePost();
@@ -85,18 +77,14 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
 
   const nestedComments = getReplies(comment.id.toString());
   return (
-    <div
-      className="comment"
-      style={{
-        margin: "20px",
-        padding: "10px",
-      }}
-    >
+    <div className="comment">
       <div className="header">
-        <span className="name">{comment.author?.first_name}</span>
-        <span> | </span>
+        <span className="name">
+          Commented by <span>{comment.author?.first_name}</span>
+        </span>
+        <span className="divider"> | </span>
         <span className="date">
-          {dateFormatter.format(Date.parse(comment.created_at))}
+          {<TimeAgo date={new Date(comment.created_at)} />}
         </span>
       </div>
       {isEditing ? (
@@ -112,16 +100,24 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
       )}
       <div className="footer">
         <div className="vote">
-          <IconBtn Icon={UpvoteArrow} aria-label="love" />
+          <div className="comment-upvote">
+            <UpvoteArrow aria-label="love" />
+          </div>
           <p>800</p>
-          <IconBtn Icon={DownvoteArrow} aria-label="love" />
+          <div className="comment-downvote">
+            <DownvoteArrow aria-label="love" />
+          </div>
         </div>
-        <IconBtn Icon={FaHeart} aria-label="love">
-          2
-        </IconBtn>
-        <IconBtn Icon={Like} aria-label="like">
-          2
-        </IconBtn>
+        <div className="comment-icon comment-heart">
+          <IconForContent Icon={LoveIcon} aria-label="love">
+            2
+          </IconForContent>
+        </div>
+        <div className="comment-icon comment-like">
+          <IconForContent Icon={Like} aria-label="like">
+            2
+          </IconForContent>
+        </div>
         <IconBtn
           Icon={FaReply}
           onClick={() => setIsReplying((prev) => !prev)}
@@ -163,7 +159,9 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
           </div>
         )}
 
-        {nestedComments && <Comments comments={nestedComments} />}
+        <div className="neseted-comment">
+          {nestedComments && <Comments comments={nestedComments} />}
+        </div>
       </div>
     </div>
   );

@@ -56,3 +56,59 @@ export function deletePost(postId: string): Promise<string> {
     },
   });
 }
+
+export interface UpvoteResponse {
+  upvoted: boolean;
+}
+
+export function upvotePost(postId: string): Promise<UpvoteResponse> {
+  return fetchData(`${url}/upvote_posts/${postId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}
+
+export interface DownvoteResponse {
+  downvoted: boolean;
+}
+
+export function downvotePost(postId: string): Promise<DownvoteResponse> {
+  return fetchData(`${url}/downvote_posts/${postId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}
+
+export interface LoveResponse {
+  loved: boolean;
+}
+
+export function lovePost(postId: string): Promise<LoveResponse> {
+  return fetchData(`${url}/love_posts/${postId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}
+
+export interface LikeResponse {
+  liked: boolean;
+}
+
+export function likePost(postId: string): Promise<LikeResponse> {
+  return fetchData(`${url}/like_posts/${postId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}

@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Poppins:wght@400;700&display=swap");
+
+.community-detail-wrapper {
+  background: rgb(223, 214, 214);
+  display: flex;
+}
+
+.community-detail {
+  padding: 1em 3em;
+}
+
+.community-detail .c-name {
+  color: black;
+  text-align: center;
+  font-family: "IBM+Plex+Sans";
+}
+
+.no-of-members {
+  text-align: center;
+  font-family: "Poppins";
+  text-transform: capitalize;
+  color: grey;
+}
+
+.join-community {
+  background: #c9a527;
+  color: white;
+  font-weight: bold;
+  padding: 1em 1.3em;
+  border: none;
+  height: 30px;
+  border-radius: 10px;
+  margin-left: 2em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.leave-community {
+  background: unset;
+  color: #c9a527;
+  font-weight: bold;
+  padding: 0.4em 0.8em;
+  border: 1px solid #c9a527;
+  height: 30px;
+  border-radius: 10px;
+  margin-left: 2em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.c-join {
+  width: 90px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 6px 20px;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+.c-desctiption {
+  width: 700px;
+  font-family: "Poppins";
+  margin-left: 3.9em;
+}
+
+.community-detail h3 {
+  color: black;
+  font-weight: bold;
+  font-size: 22px;
+  font-family: "Poppins";
+  margin-left: 2.8em;
+  margin-bottom: -0.1px;
+}
+
+.top-c-lists {
+  margin-top: 9em;
+}
+
+.join-top-community {
+  margin-left: 1.2em;
+  font-size: 20px;
+  color: white;
+  font-family: "Poppins";
+}
+
+.top-community-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  color: white;
+  margin-top: -1em;
+}
+
+.members-count {
+  margin-top: -1.5em;
+  font-size: 12px;
+  color: #beafaf;
+}
+
+.members-count span {
+  /* color: rgb(184, 173, 173); */
+  font-size: 12px;
+}
+
+.t-names {
+  margin-top: 1em;
+}
+
+.rule {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  color: #fffafa;
+  font-size: 14.5px;
+  position: relative;
+}
+
+.rule:before {
+  content: "";
+  left: -2em;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/bullet.svg");
+  background-size: contain;
+  margin-right: 0.5em;
+  margin-top: 0.25em;
+}
+
+.rules-wrapper {
+  padding-top: 1.2em;
+  margin-left: 1.5em;
+}
+
+.community-rules {
+  height: 480px;
+  margin-bottom: 2em;
+}

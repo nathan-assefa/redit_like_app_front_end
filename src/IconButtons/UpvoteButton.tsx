@@ -7,7 +7,7 @@ interface IconBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
 }
 
-const IconForContent: React.FC<IconBtnProps> = ({
+const UpvoteButton: React.FC<IconBtnProps> = ({
   Icon,
   isActive,
   color,
@@ -16,7 +16,7 @@ const IconForContent: React.FC<IconBtnProps> = ({
 }) => {
   return (
     <button
-      className={`btn icon-btn ${isActive ? "icon-btn-active" : ""} ${
+      className={`btn icon-btn ${isActive ? "upvote-btn-active" : ""} ${
         color || ""
       }`}
       {...props}
@@ -24,9 +24,15 @@ const IconForContent: React.FC<IconBtnProps> = ({
       <span className={`${children ? "mr-1" : ""}`}>
         <Icon />
       </span>
-      <span className={`${children ? "count-footer" : ""}`}>{children}</span>
+      <span
+        className={`${
+          children !== null && children !== undefined ? "count-footer" : ""
+        }`}
+      >
+        {children}
+      </span>
     </button>
   );
 };
 
-export default IconForContent;
+export default UpvoteButton;
