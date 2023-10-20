@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
-import { Post } from "../types";
-import DownvoteButton from "../IconButtons/DownvoteButton";
-import UpvoteButton from "../IconButtons/UpvoteButton";
+import { Post, User } from "../types";
+import { FaHeart, FaRegHeart, FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
+import UpvoteArrowActivate from "../icons/UpvoteArrowActivate";
+import UpvoteArrowDeactivate from "../icons/UpvotedArrowDeactive";
+import DownvoteArrowDeactivate from "../icons/DownvoteArrowDeactive";
+import DownvoteArrowActivate from "../icons/DownvoteArrowActivate";
 import IconForReactions from "../IconButtons/IconForReactions";
-import UpvoteArrow from "../icons/UpvoteArrow";
-import DownvoteArrow from "../icons/DownvoteArrow";
-import LoveIcon from "../icons/Love";
-import Like from "../icons/Like";
 import Comment from "../icons/Comment";
 import SaveIcon from "../icons/SaveIcon";
-// import JoinOrLeaveCommunity from "./JoinOrLeaveCommunity";
+import AuthToken from "../utils/AuthToken";
+import jwt_decode from "jwt-decode";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { upvotePost, downvotePost, lovePost, likePost } from "../utils/posts";
 import TimeAgo from "../utils/getTimeAgo";
@@ -25,6 +25,29 @@ const SinglePost = ({ post }: { post: Post }) => {
   const [postDownvote, setPostDownvote] = useState(false);
   const [postLove, setPostLove] = useState(false);
   const [postLike, setPostLike] = useState(false);
+
+  const accessToken = AuthToken();
+
+  const decodedToken: { user_id: string | null } = jwt_decode(accessToken);
+  const userId = decodedToken.user_id;
+
+  const hasUserInArray = (userArray: User[], currentUserId: string) => {
+    return userArray.some((user) => user.id === currentUserId);
+  };
+
+  useEffect(() => {
+    if (post) {
+      const postLiked = hasUserInArray(post.liked_by, userId!);
+      const postLoved = hasUserInArray(post.loved_by, userId!);
+      const postUpvoted = hasUserInArray(post.upvoted_by, userId!);
+      const postDownvoted = hasUserInArray(post.downvoted_by, userId!);
+
+      setPostLike(postLiked);
+      setPostLove(postLoved);
+      setPostVote(postUpvoted);
+      setPostDownvote(postDownvoted);
+    }
+  }, [post, userId]);
 
   const queryClient = useQueryClient();
 
@@ -111,48 +134,51 @@ const SinglePost = ({ post }: { post: Post }) => {
           <div className="post-footer">
             <div className="vote-wrapper">
               <div className="post-vote">
-                <UpvoteButton
+                <IconForReactions
                   onClick={onPostVote}
                   isActive={postVote}
-                  Icon={UpvoteArrow}
+                  Icon={postVote ? UpvoteArrowActivate : UpvoteArrowDeactivate}
                   aria-label="upvote"
                 />
                 <p className="total-vote">{post.voted_count}</p>
-                <DownvoteButton
+                <IconForReactions
                   onClick={onPostDownvote}
                   isActive={postDownvote}
-                  Icon={DownvoteArrow}
+                  Icon={
+                    postDownvote
+                      ? DownvoteArrowActivate
+                      : DownvoteArrowDeactivate
+                  }
                   aria-label="downvote"
                 />
               </div>
-            </div>
-            <IconForReactions
-              onClick={onPostLove}
-              isActive={postLove}
-              Icon={LoveIcon}
-              aria-label="heart"
-            >
-              {post.love_count}
-            </IconForReactions>
-            <IconForReactions
-              onClick={onPostLike}
-              isActive={postLike}
-              Icon={Like}
-              aria-label="like"
-            >
-              {post.like_count}
-            </IconForReactions>
-            <div className="comment-btn">
-              <IconForReactions Icon={Comment} aria-label="comment">
-                <p className="count-comment">{post.comment_count} comments</p>
+              <IconForReactions
+                onClick={onPostLove}
+                isActive={postLove}
+                Icon={postLove ? FaHeart : FaRegHeart}
+                aria-label="love"
+              >
+                {post.love_count}
               </IconForReactions>
-            </div>
-            <div className="save-btn">
-              <IconForReactions Icon={SaveIcon} aria-label="saveIcon">
-                <p className="save-name">save</p>
+              <IconForReactions
+                onClick={onPostLike}
+                isActive={postLike}
+                Icon={postLike ? FaThumbsUp : FaRegThumbsUp}
+                aria-label="like"
+              >
+                {post.like_count}
               </IconForReactions>
+              <div className="comment-btn">
+                <IconForReactions Icon={Comment} aria-label="comment">
+                  <p className="count-comment">{post.comment_count} comments</p>
+                </IconForReactions>
+              </div>
+              <div className="save-btn">
+                <IconForReactions Icon={SaveIcon} aria-label="saveIcon">
+                  <p className="save-name">save</p>
+                </IconForReactions>
+              </div>
             </div>
-            {/* <JoinOrLeaveCommunity communityId={post.community.id.toString()} /> */}
           </div>
         </div>
       </div>

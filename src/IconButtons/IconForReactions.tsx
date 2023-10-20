@@ -16,9 +16,9 @@ const IconForReactions: React.FC<IconBtnProps> = ({
 }) => {
   return (
     <button
-      className={`btn icon-btn ${isActive ? "icon-btn-active" : ""} ${
-        color || ""
-      }`}
+      className={`love-like-btn love-like-icon-btn ${
+        isActive ? "love-like-icon-btn-active" : ""
+      } ${color || ""}`}
       {...props}
     >
       <span className={`${children ? "mr-1" : ""}`}>

@@ -1,5 +1,5 @@
 import { Post } from "../types";
-import { SinglePostInCommunity } from "./SinglePostInCommunity";
+import SinglePostInCommunity from "./SinglePostInCommunity";
 
 const PostsInCommunity = ({ posts }: { posts: Post[] }) => {
   return (

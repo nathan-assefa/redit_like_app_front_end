@@ -43,3 +43,59 @@ export function deleteComment(commentId: string): Promise<string> {
     },
   });
 }
+
+export interface UpvoteResponse {
+  upvoted: boolean;
+}
+
+export function upvoteComment(commentId: string): Promise<UpvoteResponse> {
+  return fetchData(`${url}/upvote_comments/${commentId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}
+
+export interface DownvoteResponse {
+  downvoted: boolean;
+}
+
+export function downvoteComment(commentId: string): Promise<DownvoteResponse> {
+  return fetchData(`${url}/downvote_comments/${commentId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}
+
+export interface LoveResponse {
+  loved: boolean;
+}
+
+export function loveComment(commentId: string): Promise<LoveResponse> {
+  return fetchData(`${url}/love_comments/${commentId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}
+
+export interface LikeResponse {
+  liked: boolean;
+}
+
+export function likeComment(commentId: string): Promise<LikeResponse> {
+  return fetchData(`${url}/like_comments/${commentId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}

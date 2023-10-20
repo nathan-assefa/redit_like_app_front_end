@@ -7,6 +7,7 @@
 
 body {
   background: #515050;
+  /* background: #403e3e; */
   font-family: "Poppins";
   margin: 0;
   padding: 0;
@@ -172,7 +173,7 @@ header .container {
 
 .icon p {
   color: white;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: bold;
 }
 

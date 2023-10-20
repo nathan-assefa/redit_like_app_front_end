@@ -1,14 +1,33 @@
-import { Comment } from "../types";
-import { FaEdit, FaTrash, FaReply } from "react-icons/fa";
-import LoveIcon from "../icons/Love";
-import UpvoteArrow from "../icons/UpvoteArrow";
-import DownvoteArrow from "../icons/DownvoteArrow";
-import Like from "../icons/Like";
+import { Comment, User } from "../types";
+import {
+  FaEdit,
+  FaTrash,
+  FaReply,
+  FaHeart,
+  FaRegHeart,
+  FaRegThumbsUp,
+  FaThumbsUp,
+} from "react-icons/fa";
+// import LoveIcon from "../icons/Love";
+import UpvoteArrowActivate from "../icons/UpvoteArrowActivate";
+import UpvoteArrowDeactivate from "../icons/UpvotedArrowDeactive";
+import DownvoteArrowDeactivate from "../icons/DownvoteArrowDeactive";
+import DownvoteArrowActivate from "../icons/DownvoteArrowActivate";
+import ThreeDots from "../icons/ThreeDots";
 import IconBtn from "../IconButtons/HeaderIconBtn";
-import IconForContent from "../IconButtons/DownvoteButton";
-import { useState } from "react";
+import IconForReactions from "../IconButtons/IconForReactions";
+import IsReplying from "../IconButtons/IsReplying";
+import { useState, useEffect } from "react";
 import { usePost } from "../contexts/PostContext";
-import { createComment, updateComment, deleteComment } from "../utils/comments";
+import {
+  createComment,
+  updateComment,
+  deleteComment,
+  upvoteComment,
+  downvoteComment,
+  likeComment,
+  loveComment,
+} from "../utils/comments";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import AuthToken from "../utils/AuthToken";
 import jwt_decode from "jwt-decode";
@@ -20,15 +39,98 @@ import TimeAgo from "../utils/getTimeAgo";
 const SingleComment = ({ comment }: { comment: Comment }) => {
   const { getReplies } = usePost();
   const [isReplying, setIsReplying] = useState(false);
+  const [horizontalMenu, setHorizontalMenu] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [commentVote, setCommentVote] = useState(false);
+  const [commentDownvote, setCommentDownvote] = useState(false);
+  const [commentLove, setCommentLove] = useState(false);
+  const [commentLike, setCommentLike] = useState(false);
   const { postId } = usePost();
   const accessToken = AuthToken();
 
   const decodedToken: { user_id: string | null } = jwt_decode(accessToken);
   const userId = decodedToken.user_id;
 
+  const hasUserInArray = (userArray: User[], currentUserId: string) => {
+    return userArray.some((user) => user.id === currentUserId);
+  };
+
+  useEffect(() => {
+    if (comment) {
+      const commentLiked = hasUserInArray(comment.likes, userId!);
+      const commentLoved = hasUserInArray(comment.loves, userId!);
+      const commentUpvoted = hasUserInArray(comment.upvoted_by, userId!);
+      const commentDownvoted = hasUserInArray(comment.downvoted_by, userId!);
+
+      setCommentLike(commentLiked);
+      setCommentLove(commentLoved);
+      setCommentVote(commentUpvoted);
+      setCommentDownvote(commentDownvoted);
+    }
+  }, [comment, userId]);
+
   const queryClient = useQueryClient();
+
+  const upvoteCommentMutation = useMutation(() => {
+    return upvoteComment(comment.id.toString()).then(() =>
+      setCommentVote((prev) => !prev)
+    );
+  });
+
+  const onCommentVote = async (): Promise<void> => {
+    try {
+      await upvoteCommentMutation.mutateAsync();
+      queryClient.invalidateQueries(["post"]);
+    } catch (error) {
+      Promise.reject(error);
+    }
+  };
+
+  const downvoteCommentMutation = useMutation(() => {
+    return downvoteComment(comment.id.toString()).then(() =>
+      setCommentDownvote((prev) => !prev)
+    );
+  });
+
+  const onCommentDownvote = async (): Promise<void> => {
+    try {
+      await downvoteCommentMutation.mutateAsync();
+      queryClient.invalidateQueries(["post"]);
+    } catch (error) {
+      Promise.reject(error);
+    }
+  };
+
+  const likeCommentMutation = useMutation(() => {
+    return likeComment(comment.id.toString()).then(() =>
+      setCommentLike((prev) => !prev)
+    );
+  });
+
+  const onCommentLike = async (): Promise<void> => {
+    try {
+      await likeCommentMutation.mutateAsync();
+      queryClient.invalidateQueries(["post"]);
+    } catch (error) {
+      Promise.reject(error);
+    }
+  };
+
+  const loveCommentMutation = useMutation(() => {
+    return loveComment(comment.id.toString()).then(() =>
+      setCommentLove((prev) => !prev)
+    );
+  });
+
+  const onCommentLove = async (): Promise<void> => {
+    try {
+      await loveCommentMutation.mutateAsync();
+      queryClient.invalidateQueries(["post"]);
+    } catch (error) {
+      Promise.reject(error);
+    }
+  };
 
   const createCommentReplyMutation = useMutation((content: string) => {
     return createComment(postId, content, comment.id.toString()).then(() =>
@@ -79,6 +181,7 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
   return (
     <div className="comment">
       <div className="header">
+        <div className="user-picture"></div>
         <span className="name">
           Commented by <span>{comment.author?.first_name}</span>
         </span>
@@ -100,54 +203,73 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
       )}
       <div className="footer">
         <div className="vote">
-          <div className="comment-upvote">
-            <UpvoteArrow aria-label="love" />
-          </div>
-          <p>800</p>
-          <div className="comment-downvote">
-            <DownvoteArrow aria-label="love" />
-          </div>
+          <IconForReactions
+            onClick={onCommentVote}
+            isActive={commentVote}
+            Icon={commentVote ? UpvoteArrowActivate : UpvoteArrowDeactivate}
+            aria-label="upvote"
+          />
+          <p className="total-vote">{comment.voted_count}</p>
+          <IconForReactions
+            onClick={onCommentDownvote}
+            isActive={commentDownvote}
+            Icon={
+              commentDownvote ? DownvoteArrowActivate : DownvoteArrowDeactivate
+            }
+            aria-label="downvote"
+          />
         </div>
         <div className="comment-icon comment-heart">
-          <IconForContent Icon={LoveIcon} aria-label="love">
-            2
-          </IconForContent>
+          <IconForReactions
+            onClick={onCommentLove}
+            isActive={commentLove}
+            Icon={commentLove ? FaHeart : FaRegHeart}
+            aria-label="love"
+          >
+            {comment.love_count}
+          </IconForReactions>
         </div>
         <div className="comment-icon comment-like">
-          <IconForContent Icon={Like} aria-label="like">
-            2
-          </IconForContent>
+          <IconForReactions
+            onClick={onCommentLike}
+            isActive={commentLike}
+            Icon={commentLike ? FaThumbsUp : FaRegThumbsUp}
+            aria-label="like"
+          >
+            {comment.like_count}
+          </IconForReactions>
         </div>
-        <IconBtn
-          Icon={FaReply}
-          onClick={() => setIsReplying((prev) => !prev)}
-          isActive={isReplying}
-          aria-label={isReplying ? "cance" : "reply"}
-        />
-        {userId === comment.author.id && (
-          <>
-            <IconBtn
-              Icon={FaEdit}
-              onClick={() => setIsEditing((prev) => !prev)}
-              isActive={isEditing}
-              aria-label="edit"
-            />
-            <IconBtn
-              Icon={FaTrash}
-              onClick={onCommentDelete}
-              isActive={isDeleting}
-              aria-label="delete"
-              color="danger"
-            />
-          </>
-        )}
+        <div className="comment-icon comment-reply">
+          <IsReplying
+            Icon={FaReply}
+            onClick={() => {
+              setHorizontalMenu(false);
+              setIsEditing(false);
+              setIsDeleting(false);
+              setIsReplying((prev) => !prev);
+            }}
+            isActive={isReplying}
+            aria-label={isReplying ? "cancel" : "reply"}
+          />
+        </div>
+        <div
+          onClick={() => {
+            setIsReplying(false);
+            setIsEditing(false);
+            setIsDeleting(false);
+            setHorizontalMenu((prev) => !prev);
+          }}
+          className="three-dots"
+        >
+          <ThreeDots />
+        </div>
       </div>
       {deleteCommentMutation.isError && (
         <div className="error-msg mt-1">
           You are not allowed to delete the comment
         </div>
       )}
-      <div style={{ color: "red" }}>
+      <div className="replying">
         {isReplying && (
           <div className="mt-1 mt-3">
             <CommentForm
@@ -156,6 +278,32 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
               onSubmit={onCommentReply}
               autoFocus={true}
             />
+          </div>
+        )}
+
+        {horizontalMenu && (
+          <div>
+            {userId === comment.author.id && (
+              <>
+                <IconForReactions
+                  Icon={FaEdit}
+                  onClick={() => setIsEditing((prev) => !prev)}
+                  isActive={isEditing}
+                  aria-label="edit"
+                >
+                  Reply
+                </IconForReactions>
+                <IconForReactions
+                  Icon={FaTrash}
+                  onClick={onCommentDelete}
+                  isActive={isDeleting}
+                  aria-label="delete"
+                  color="danger"
+                >
+                  Delete
+                </IconForReactions>
+              </>
+            )}
           </div>
         )}
 

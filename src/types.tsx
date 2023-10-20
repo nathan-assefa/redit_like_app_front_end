@@ -1,4 +1,4 @@
-interface User {
+export interface User {
   id: string;
   first_name: string;
   last_name: string;
@@ -58,6 +58,9 @@ export interface Comment {
   downvoted_by: User[];
   likes: User[];
   loves: User[];
+  voted_count: number;
+  like_count: number;
+  love_count: number;
 }
 
 export interface Notification {

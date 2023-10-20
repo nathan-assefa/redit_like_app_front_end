@@ -46,14 +46,6 @@ const UsePostSource = (): {
     [post, search]
   );
 
-  // const sortedPost = useMemo(
-  //   () =>
-  //     [...filteredPost].sort((a, b) =>
-  //       a.created_at.localeCompare(b.created_at)
-  //     ),
-  //   [filteredPost]
-  // );
-
   return {
     post: filteredPost,
     search,

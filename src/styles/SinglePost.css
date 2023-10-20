@@ -1,0 +1,46 @@
+.single-post-wrapper {
+  display: flex;
+}
+
+.left-column {
+  max-width: 55%;
+}
+
+.single-post {
+  margin-top: 1.5em;
+}
+
+.community-detail {
+  height: 350px;
+  padding: 0;
+}
+
+.c-name-and-button {
+  margin-top: 0.8em;
+}
+
+.about-community {
+  margin-top: 0.5em;
+  margin-bottom: -5.8em;
+}
+
+.asking-membership {
+  color: white;
+  font-size: 16px;
+  font-family: "Poppins";
+  text-align: left;
+  margin-top: -0.25em;
+  padding-left: 1.5em;
+  padding-right: 1.4em;
+}
+
+.c-date-info {
+  margin-left: 1.5em;
+  display: flex;
+  align-items: center;
+}
+
+.c-date-info .date {
+  margin-left: 0.8em;
+  color: #c0b0b0;
+}
