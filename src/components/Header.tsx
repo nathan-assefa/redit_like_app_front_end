@@ -3,6 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { usePostList } from "../contexts/PostListContext";
 import HomeIcon from "../icons/HomeIcon";
 import OptionIcon from "../icons/OptionIcon";
+import ProfileListIcon from "../icons/ProfileListIcon";
 import Magnifier from "../icons/Magnifier";
 import CreatePost from "../icons/CreatePost";
 import { AiOutlineBell } from "react-icons/ai";
@@ -14,6 +15,9 @@ import { Profile } from "../types";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import useCommunity from "../components/useCommunity";
+// import Modal from "../components/Modal";
+// import CreateCommunity from "../pages/CreateCommunity";
+// import TopCommunities from "../services/TopCommunities";
 
 import { ClearNotificationCount } from "../utils/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -52,6 +56,7 @@ const Header = () => {
   const { username, logOutUser } = useAuth();
   const [homeOption, setHomeOption] = useState(false);
   const [popular, setPopular] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   const { search, setSearch } = usePostList();
 
@@ -60,7 +65,6 @@ const Header = () => {
       <header>
         <div className="user-auth">
           {/* <Link to="/communities">Community</Link> */}
-          <div className="profile-picture"></div>
           <div className="profile-info">
             {username && <p>@{username}</p>}
             {username ? (
@@ -72,6 +76,14 @@ const Header = () => {
                 Login
               </Link>
             )}
+          </div>
+          <Link to="update_profile">
+            <div className="profile-picture"></div>
+          </Link>
+          <div className="option-icon pf-op-icon">
+            <p onClick={() => setHomeOption((prev) => !prev)}>
+              <ProfileListIcon />
+            </p>
           </div>
         </div>
         {homeOption && (
@@ -100,7 +112,10 @@ const Header = () => {
             </div>
             <div className="feeds">
               <p className="feed">feeds</p>
-              <div className="homie">
+              <div
+                onClick={() => setHomeOption((prev) => !prev)}
+                className="homie"
+              >
                 <div className="home-menu-icon">
                   <HomeIcon />
                 </div>
@@ -199,6 +214,10 @@ const Header = () => {
                 <Setting />
               </div>
             </div>
+            {/* <button onClick={() => setIsOpen(true)}>toggle</button>
+            <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+              <CreateCommunity />
+            </Modal> */}
           </div>
         </div>
       </header>

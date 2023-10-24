@@ -6,6 +6,7 @@ export interface User {
 }
 
 interface CommunityMembership {
+  id: string;
   created_at: string;
   updated_at: string;
   user: User;
@@ -88,4 +89,6 @@ export interface Profile {
   phone_number: string | null;
   unread_messages_count: number;
   unread_notifications_count: number;
+  followers_count: number;
+  following_count: number;
 }

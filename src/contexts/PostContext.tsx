@@ -24,7 +24,6 @@ const UsePostSource = (): {
   const getReplies = (parentId: string) => {
     return commentByParentId[parentId];
   };
-  console.log("post: ", post);
 
   return {
     post: postData,

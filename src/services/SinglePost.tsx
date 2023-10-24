@@ -7,14 +7,23 @@ import DownvoteArrowDeactivate from "../icons/DownvoteArrowDeactive";
 import DownvoteArrowActivate from "../icons/DownvoteArrowActivate";
 import IconForReactions from "../IconButtons/IconForReactions";
 import Comment from "../icons/Comment";
+import ThreeDots from "../icons/ThreeDots";
 import SaveIcon from "../icons/SaveIcon";
 import AuthToken from "../utils/AuthToken";
 import jwt_decode from "jwt-decode";
+import axios from "axios";
 
 import { useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { upvotePost, downvotePost, lovePost, likePost } from "../utils/posts";
+import {
+  upvotePost,
+  downvotePost,
+  lovePost,
+  likePost,
+  // updatePost,
+} from "../utils/posts";
 import TimeAgo from "../utils/getTimeAgo";
+import PostForm from "../services/PostForm";
 
 const SinglePost = ({ post }: { post: Post }) => {
   if (!post) {
@@ -25,6 +34,9 @@ const SinglePost = ({ post }: { post: Post }) => {
   const [postDownvote, setPostDownvote] = useState(false);
   const [postLove, setPostLove] = useState(false);
   const [postLike, setPostLike] = useState(false);
+  const [horizontalMenu, setHorizontalMenu] = useState(false);
+
+  const [isEditing, setIsEditing] = useState(false);
 
   const accessToken = AuthToken();
 
@@ -50,6 +62,53 @@ const SinglePost = ({ post }: { post: Post }) => {
   }, [post, userId]);
 
   const queryClient = useQueryClient();
+
+  interface UpdatedPost {
+    id: string;
+    title?: string;
+    content?: string;
+  }
+  const apiUrl: string = "http://localhost:8000/api";
+
+  const updatePostMutation = useMutation(
+    async (updatedPost: UpdatedPost) => {
+      const { id, title, content } = updatedPost;
+      const url = `${apiUrl}/posts/${id}`;
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + String(accessToken),
+      };
+      const data = { content, title };
+
+      try {
+        const response = await axios.patch(url, data, { headers });
+        return response.data;
+      } catch (error) {
+        throw error;
+      }
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["post"]);
+      },
+    }
+  );
+
+  const onPostUpdate = async (formData: {
+    title: string;
+    content: string;
+  }): Promise<void> => {
+    try {
+      await updatePostMutation.mutateAsync({
+        id: post.id.toString(),
+        title: formData.title,
+        content: formData.content,
+      });
+      setIsEditing((prev) => !prev);
+    } catch (error) {
+      console.error("Error updating post:", error);
+    }
+  };
 
   const upvotePostMutation = useMutation(() => {
     return upvotePost(post.id.toString()).then(() =>
@@ -116,14 +175,43 @@ const SinglePost = ({ post }: { post: Post }) => {
       <div className="single-post">
         <div className="post-container">
           <div className="post-header">
-            <div className="community-name">{post.community.name}</div>
+            <div className="c-name-and-option">
+              <div className="community-name">{post.community.name}</div>
+              <div
+                onClick={() => setHorizontalMenu((prev) => !prev)}
+                className="dots"
+              >
+                <ThreeDots />
+              </div>
+            </div>
             <Link to={`/posts/${post.id}`}>
               <div className="post-title">{post.title}</div>
             </Link>
           </div>
-          <Link to={`/posts/${post.id}`}>
+          {horizontalMenu && userId === post.author.id && (
+            <div
+              className="edit-post"
+              onClick={() => setIsEditing((prev) => !prev)}
+            >
+              Edit
+            </div>
+          )}
+          {isEditing ? (
+            <div className="post-edit">
+              <PostForm
+                isLoading={updatePostMutation.isLoading}
+                isError={updatePostMutation.isError}
+                autoFocus={true}
+                onSubmit={onPostUpdate}
+                initialValue={{
+                  title: post.title,
+                  content: post.content,
+                }}
+              />
+            </div>
+          ) : (
             <div className="post-content">{post.content}</div>
-          </Link>
+          )}
           <div className="post-info">
             <p className="post-author">Posted by {post.author.first_name}</p>
             <p className="post-date">
@@ -152,32 +240,32 @@ const SinglePost = ({ post }: { post: Post }) => {
                   aria-label="downvote"
                 />
               </div>
-              <IconForReactions
-                onClick={onPostLove}
-                isActive={postLove}
-                Icon={postLove ? FaHeart : FaRegHeart}
-                aria-label="love"
-              >
-                {post.love_count}
+            </div>
+            <IconForReactions
+              onClick={onPostLove}
+              isActive={postLove}
+              Icon={postLove ? FaHeart : FaRegHeart}
+              aria-label="love"
+            >
+              {post.love_count}
+            </IconForReactions>
+            <IconForReactions
+              onClick={onPostLike}
+              isActive={postLike}
+              Icon={postLike ? FaThumbsUp : FaRegThumbsUp}
+              aria-label="like"
+            >
+              {post.like_count}
+            </IconForReactions>
+            <div className="comment-btn">
+              <IconForReactions Icon={Comment} aria-label="comment">
+                <p className="count-comment">{post.comment_count} comments</p>
               </IconForReactions>
-              <IconForReactions
-                onClick={onPostLike}
-                isActive={postLike}
-                Icon={postLike ? FaThumbsUp : FaRegThumbsUp}
-                aria-label="like"
-              >
-                {post.like_count}
+            </div>
+            <div className="save-btn">
+              <IconForReactions Icon={SaveIcon} aria-label="saveIcon">
+                <p className="save-name">save</p>
               </IconForReactions>
-              <div className="comment-btn">
-                <IconForReactions Icon={Comment} aria-label="comment">
-                  <p className="count-comment">{post.comment_count} comments</p>
-                </IconForReactions>
-              </div>
-              <div className="save-btn">
-                <IconForReactions Icon={SaveIcon} aria-label="saveIcon">
-                  <p className="save-name">save</p>
-                </IconForReactions>
-              </div>
             </div>
           </div>
         </div>

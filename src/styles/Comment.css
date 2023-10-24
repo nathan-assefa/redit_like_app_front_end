@@ -72,7 +72,8 @@
 .comment {
   padding: 0.5rem;
   border-left: 1.25px solid hsl(220, 2%, 37%);
-  margin-bottom: 0.25em;
+  margin-bottom: -1em;
+  height: auto;
 }
 
 .comment .header {
@@ -141,8 +142,7 @@
   margin-right: 0.5rem;
   margin-left: 0.5rem;
 }
-
-.comment-icon {
+.c-icon {
   display: flex;
   margin-top: 0.5em;
 }
@@ -178,6 +178,8 @@
 }
 
 .neseted-comment {
+  margin-top: -1em;
+  margin-bottom: 0.5em;
   padding-left: 0.5rem;
   flex-grow: 1;
 }
@@ -236,4 +238,30 @@
 
 .reply-btn[disabled] {
   --color: hsl(var(--hue), 20%, 74%);
+}
+
+.d-e-wrapper {
+  position: relative;
+}
+
+.deleting-editing {
+  position: absolute;
+  top: -3em;
+  left: 15em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  height: auto;
+  box-shadow: 0 0 3px rgba(44, 43, 43, 0.5);
+}
+
+.com-edit {
+  margin-bottom: 0.4em;
+}
+
+.com-edit:hover {
+  background: rgb(87, 84, 84);
+}
+
+.com-delete:hover {
+  background: rgb(87, 84, 84);
 }

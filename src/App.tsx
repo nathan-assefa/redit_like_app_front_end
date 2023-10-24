@@ -18,6 +18,7 @@ import PrivateRoutes from "./utils/PrivateRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import CreateCommunity from "./pages/CreateCommunity";
 import CreatePost from "./pages/CreatePost";
+import UpdateProfile from "./pages/UpdateProfile";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/posts" element={<PostList />} />
                 <Route path="/create_community" element={<CreateCommunity />} />
                 <Route path="/create_post" element={<CreatePost />} />
+                <Route path="/update_profile" element={<UpdateProfile />} />
                 <Route
                   path="/communities/:id"
                   element={

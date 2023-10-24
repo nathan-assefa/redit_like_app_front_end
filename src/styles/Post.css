@@ -11,6 +11,10 @@
   display: flex;
 }
 
+.left-column {
+  margin-top: 2.5em;
+}
+
 .post-container {
   border: 1px solid #666161;
   box-shadow: 0 0 3px rgba(44, 43, 43, 0.5);
@@ -33,6 +37,26 @@
   font-weight: 700;
   margin-left: 2.9em;
   letter-spacing: 0.2rem;
+}
+
+.c-name-and-option {
+  display: flex;
+  align-items: center;
+}
+
+.c-name-and-option .dots {
+  margin-left: 2em;
+  margin-top: -0.5em;
+  cursor: pointer;
+}
+
+.edit-post {
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  right: 1.5em;
+  top: 3em;
+  cursor: pointer;
 }
 
 .post-title {
@@ -160,7 +184,7 @@
 .save-icon {
   width: 20px;
   height: 20px;
-  margin-top: -0.2em;
+  margin-top: -0.1em;
 }
 
 .save-btn {
@@ -255,7 +279,7 @@
 .community-2 {
   width: 390px;
   height: 25%;
-  background-image: url("../images/2-community.jpg");
+  background-image: url("../images/4-african-community.jpg");
   background-size: cover;
   background-position-y: 22%;
   border-radius: 50px 50px 0 0;

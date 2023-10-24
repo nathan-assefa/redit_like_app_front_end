@@ -12,6 +12,7 @@ import "./styles/Notification.css";
 import "./styles/PostInCommunity.css";
 import "./styles/Comment.css";
 import "./styles/SinglePost.css";
+import "./styles/UserProifle.css";
 // import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

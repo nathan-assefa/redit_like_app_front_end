@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import SinglePost from "./SinglePost";
 import { usePostList } from "../contexts/PostListContext";
 import TopCommunities from "./TopCommunities";
+import AllUsersProfile from "../services/AllUserProfile";
 
 export const PostList = () => {
   const { post } = usePostList();
@@ -31,6 +32,7 @@ export const PostList = () => {
             <button className=" buttn on-post-create">Create Post</button>
           </Link>
         </div>
+        <AllUsersProfile />
         <TopCommunities />
       </div>
     </div>

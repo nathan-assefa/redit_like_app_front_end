@@ -8,13 +8,12 @@ import {
   FaRegThumbsUp,
   FaThumbsUp,
 } from "react-icons/fa";
-// import LoveIcon from "../icons/Love";
 import UpvoteArrowActivate from "../icons/UpvoteArrowActivate";
 import UpvoteArrowDeactivate from "../icons/UpvotedArrowDeactive";
 import DownvoteArrowDeactivate from "../icons/DownvoteArrowDeactive";
 import DownvoteArrowActivate from "../icons/DownvoteArrowActivate";
 import ThreeDots from "../icons/ThreeDots";
-import IconBtn from "../IconButtons/HeaderIconBtn";
+// import IconBtn from "../IconButtons/HeaderIconBtn";
 import IconForReactions from "../IconButtons/IconForReactions";
 import IsReplying from "../IconButtons/IsReplying";
 import { useState, useEffect } from "react";
@@ -219,7 +218,7 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
             aria-label="downvote"
           />
         </div>
-        <div className="comment-icon comment-heart">
+        <div className="comment-icon c-icon comment-heart">
           <IconForReactions
             onClick={onCommentLove}
             isActive={commentLove}
@@ -229,7 +228,7 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
             {comment.love_count}
           </IconForReactions>
         </div>
-        <div className="comment-icon comment-like">
+        <div className="comment-icon c-icon comment-like">
           <IconForReactions
             onClick={onCommentLike}
             isActive={commentLike}
@@ -239,7 +238,7 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
             {comment.like_count}
           </IconForReactions>
         </div>
-        <div className="comment-icon comment-reply">
+        <div className="comment-icon c-icon comment-reply">
           <IsReplying
             Icon={FaReply}
             onClick={() => {
@@ -282,28 +281,34 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
         )}
 
         {horizontalMenu && (
-          <div>
-            {userId === comment.author.id && (
-              <>
-                <IconForReactions
-                  Icon={FaEdit}
-                  onClick={() => setIsEditing((prev) => !prev)}
-                  isActive={isEditing}
-                  aria-label="edit"
-                >
-                  Reply
-                </IconForReactions>
-                <IconForReactions
-                  Icon={FaTrash}
-                  onClick={onCommentDelete}
-                  isActive={isDeleting}
-                  aria-label="delete"
-                  color="danger"
-                >
-                  Delete
-                </IconForReactions>
-              </>
-            )}
+          <div className="d-e-wrapper">
+            <div className="deleting-editing">
+              {userId === comment.author.id && (
+                <>
+                  <div className="com-edit">
+                    <IconForReactions
+                      Icon={FaEdit}
+                      onClick={() => setIsEditing((prev) => !prev)}
+                      isActive={isEditing}
+                      aria-label="edit"
+                    >
+                      Edit
+                    </IconForReactions>
+                  </div>
+                  <div className="com-delete">
+                    <IconForReactions
+                      Icon={FaTrash}
+                      onClick={onCommentDelete}
+                      isActive={isDeleting}
+                      aria-label="delete"
+                      color="danger"
+                    >
+                      Delete
+                    </IconForReactions>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         )}
 

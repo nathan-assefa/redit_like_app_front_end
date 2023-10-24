@@ -4,7 +4,8 @@ type PostFormProps = {
   isLoading: boolean;
   isError: boolean;
   onSubmit: (formData: { title: string; content: string }) => Promise<void>;
-  initialValue?: string;
+  // initialValue?: string;
+  initialValue?: { title: string; content: string };
   autoFocus?: boolean;
 };
 
@@ -12,7 +13,8 @@ const PostForm: React.FC<PostFormProps> = ({
   isLoading,
   isError,
   onSubmit,
-  initialValue = "",
+  // initialValue = "",
+  initialValue = { title: "", content: "" },
   autoFocus = false,
 }) => {
   type PostState = {
@@ -33,8 +35,10 @@ const PostForm: React.FC<PostFormProps> = ({
   };
 
   const [{ title, content }, dispatch] = useReducer(reducer, {
-    title: initialValue,
-    content: initialValue,
+    // title: initialValue,
+    // content: initialValue,
+    title: initialValue.title, // Initialize with the title property
+    content: initialValue.content,
   });
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
