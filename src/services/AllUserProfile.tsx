@@ -32,9 +32,12 @@ const AllUsersProfile = () => {
         {allProfiles.slice(0, 6).map((profile) => (
           <div className="top-community-name" key={profile.id}>
             <div className="participants-wrapper">
-              <Link to="#" className="participants-picture"></Link>
+              <Link
+                to={`/user_profile/${profile.id}`}
+                className="participants-picture"
+              ></Link>
               <div className="participants-info">
-                <Link to="#">
+                <Link to={`/user_profile/${profile.id}`}>
                   <p className="participat-name">@{profile.user.first_name}</p>
                 </Link>
                 <p className="members-count">

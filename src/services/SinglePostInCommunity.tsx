@@ -108,7 +108,7 @@ const SinglePostInCommunity = ({ post }: { post: Post }) => {
             </p>
           </div>
           <div className="post-footer">
-            <div className="vote-wrapper">
+            <div className="vote-wrapper c-post-vote-wrapper">
               <div className="post-vote">
                 <IconForReactions
                   onClick={onPostVote}
@@ -146,14 +146,14 @@ const SinglePostInCommunity = ({ post }: { post: Post }) => {
             >
               {post.like_count}
             </IconForReactions>
-            <div className="comment-btn">
+            <div className="comment-btn com-p-c-btn">
               <IconForReactions Icon={Comment} aria-label="comment">
-                <p className="count-comment">{post.comment_count} comments</p>
+                <p className="count-comment">{post.comment_count} Comments</p>
               </IconForReactions>
             </div>
             <div className="save-btn">
               <IconForReactions Icon={SaveIcon} aria-label="saveIcon">
-                <p className="save-name">save</p>
+                <p className="save-name">Save</p>
               </IconForReactions>
             </div>
             {/* <JoinOrLeaveCommunity communityId={post.community.id.toString()} /> */}

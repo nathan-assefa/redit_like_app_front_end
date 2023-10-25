@@ -9,7 +9,8 @@ import { usePostList } from "../contexts/PostListContext";
 import jwt_decode from "jwt-decode";
 import DateIcon from "../icons/DateIcon";
 import UserCommunities from "../services/UserCommunity";
-import SinglePost from "../services/SinglePost";
+import SinglePostInCommunity from "../services/SinglePostInCommunity";
+import { useState } from "react";
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
   dateStyle: "medium",
@@ -20,6 +21,8 @@ const UpdateProfile = () => {
   let { username } = useAuth();
   const { post } = usePostList();
   const accessToken = AuthToken();
+
+  const [isEditing, setIsEditing] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -103,39 +106,57 @@ const UpdateProfile = () => {
         </div>
         <div className="middle-part">
           <div className="p-header">
-            <div className="profile-picuture"></div>
+            <div className="profile-picture pro-picture pro-top"></div>
             <div className="user-name">{username ? username : ""}</div>
-            <button className="follow-button">Follow</button>
+            <div className="follow-info">
+              <div className="follow followers">
+                <span>{profile?.followers_count}</span> followers
+              </div>
+              <span className="divider"> . </span>
+              <div className="follow following">
+                <span>{profile?.following_count}</span> following
+              </div>
+            </div>
           </div>
           <h3 className=" more-info user-bio-title">Bio</h3>
-          <p className="more-info u-bio">{profile?.bio}</p>
+          <p className="more-info u-bio">
+            {profile?.bio ? profile?.bio : "No Bio yet"}
+          </p>
+          <button
+            onClick={() => setIsEditing((prev) => !prev)}
+            className="edit-user-profile"
+          >
+            Edit Profile
+          </button>
+          {isEditing && (
+            <ProfileForm
+              isLoading={updateProfileMutation.isLoading}
+              isError={updateProfileMutation.isError}
+              autoFocus={true}
+              onSubmit={onProfileUpdate}
+              initialValue={{
+                bio: profile?.bio || "",
+                website: profile?.website || "",
+                location: profile?.location || "",
+                birthdate: profile?.birthdate || "",
+                phone_number: profile?.phone_number || "",
+              }}
+            />
+          )}
           <h3 className="more-info user-participation">
-            See what John's communities are discussing.
+            See what your communities are discussing.
           </h3>
 
           <div className="posts-list">
             {postsUserParticipates.map((p) => (
               <div className="single-post user-single-post" key={p.id}>
-                <SinglePost post={p} />
+                <SinglePostInCommunity post={p} />
               </div>
             ))}
           </div>
-          <ProfileForm
-            isLoading={updateProfileMutation.isLoading}
-            isError={updateProfileMutation.isError}
-            autoFocus={true}
-            onSubmit={onProfileUpdate}
-            initialValue={{
-              bio: profile?.bio || "",
-              website: profile?.website || "",
-              location: profile?.location || "",
-              birthdate: profile?.birthdate || "",
-              phone_number: profile?.phone_number || "",
-            }}
-          />
         </div>
         <div className="profile-right-column">
-          <div className="recent-articles">{`${username}'s Recent Articles`}</div>
+          <div className="recent-articles">{`${profile?.user.first_name}'s Recent Articles`}</div>
           {filteredPosts.length > 0 ? (
             filteredPosts.slice(0, 6).map((post) => (
               <Link
@@ -143,15 +164,14 @@ const UpdateProfile = () => {
                 className="filtered-post single-post"
                 key={post.id}
               >
-                <div className="profile-picture pro-border"></div>
-                <div>
+                <div className="profile-picture pro-picture"></div>
+                <div className="user-posts">
                   <p className="p-u-name">@{post.author.first_name}</p>
                   <div className="c-date-info p-c-date">
                     <div className="date-icon">
                       <DateIcon />
                     </div>
                     <span className="date">
-                      Posted{" "}
                       {dateFormatter.format(Date.parse(post?.created_at))}
                     </span>
                   </div>

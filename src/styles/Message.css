@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap");
+
+:root {
+  --color-gray: rgb(211, 224, 224);
+  --color-bg: #5b5757;
+  --color-light: #acb4bd;
+  --color-border: #e0e3e6;
+}
+
+/* BASE STYLES */
+
+.all-user-messages {
+  background: #2d2d39;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lexend", sans-serif;
+  color: inherit;
+  font-size: inherit;
+  scroll-behavior: smooth;
+  padding-top: 1em;
+}
+
+a {
+  text-decoration: none;
+}
+
+.user-messages-list {
+  /* background: red; */
+  padding: 0;
+  margin: 16px 0;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.user-messages-list::-webkit-scrollbar {
+  display: none;
+}
+
+.user-message-wrapper {
+  display: flex;
+}
+
+.user-message-content {
+  background: #6a6a7b;
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 1em;
+  display: flex;
+  padding-right: 0.5em;
+  padding-left: 1em;
+  padding-top: -1em;
+  padding-bottom: 0.5em;
+  border-radius: 15px;
+  position: relative;
+}
+
+.u-message {
+  color: rgb(250, 237, 237);
+  font-family: "IBM+Plex+Sans";
+  font-size: 18px;
+  margin-right: 0.9em;
+}
+
+.u-date-formatter {
+  color: rgb(185, 172, 172);
+  font-size: 14px;
+  /* margin-top: 2.5em; */
+  position: absolute;
+  right: 0.4em;
+  bottom: -1em;
+}
+
+.user-message-content:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background: #2d2d39;
+  position: absolute;
+  bottom: 68%;
+  left: -0.6em;
+  border-radius: 50%;
+}
+
+.user-message-input {
+  margin-top: -2em;
+  border: 5px solid green;
+  resize: none;
+  width: 60%;
+  height: 50px;
+  background: #393947;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  margin-left: 5.8em;
+  font-size: inherit;
+  font-family: inherit;
+  border: 2px solid #817f7f;
+  line-height: 1.4;
+  margin-left: 17.5em;
+  margin-bottom: 1em;
+  margin-top: 0.1em;
+  border: none;
+  color: rgb(208, 192, 192);
+  font-size: 16px;
+}
+
+.all-user-messages .send-message {
+  background: none;
+  margin-left: -6em;
+  top: -0.009em;
+  z-index: 9999;
+}

@@ -3,14 +3,12 @@ import { followOrUnfollow, followStatus } from "../utils/userProfile";
 import { useState, useEffect } from "react";
 
 const FollowOrUnfollowUser = ({ userId }: { userId: string }) => {
-  console.log(userId);
   type FollowUserStatus = { is_following: boolean };
 
   const { data: follow_status, status } = useQuery<FollowUserStatus>(
     ["follow_status", userId],
     () => followStatus(userId)
   );
-  console.log(follow_status);
 
   const [isFollow, setIsFollow] = useState(false);
 
@@ -32,7 +30,6 @@ const FollowOrUnfollowUser = ({ userId }: { userId: string }) => {
   };
 
   useEffect(() => {
-    console.log(follow_status?.is_following);
     setIsFollow(follow_status?.is_following || false);
   }, [follow_status]);
 

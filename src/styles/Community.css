@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Poppins:wght@400;700&display=swap");
 
 .community-detail-wrapper {
-  background: rgb(223, 214, 214);
+  background: #2d2d39;
   display: flex;
 }
 
@@ -143,4 +143,8 @@
 .community-rules {
   height: 480px;
   margin-bottom: 2em;
+}
+
+.post-list-in-c {
+  margin-bottom: 3em;
 }

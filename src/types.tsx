@@ -74,6 +74,7 @@ export interface Notification {
   content: string;
   timestamp: string;
   is_read: boolean;
+  post_id: number;
 }
 
 export interface Profile {
@@ -91,4 +92,14 @@ export interface Profile {
   unread_notifications_count: number;
   followers_count: number;
   following_count: number;
+}
+
+export interface Messages {
+  created_at: string;
+  updated_at: string;
+  sender: User;
+  recipient: User;
+  content: string;
+  timestamp: string;
+  is_read: boolean;
 }

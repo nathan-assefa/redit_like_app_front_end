@@ -25,6 +25,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const Header = () => {
   const [clearNotification, setClearNotification] = useState(false);
+  const [showMessages, setShowMessages] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -193,22 +194,30 @@ const Header = () => {
                     Icon={AiOutlineBell}
                     aria-label="notification"
                   >
-                    <p>
-                      {profile?.unread_notifications_count
-                        ? profile?.unread_notifications_count
-                        : 0}
-                    </p>
+                    {profile?.unread_notifications_count ? (
+                      <p>{profile?.unread_notifications_count}</p>
+                    ) : (
+                      ""
+                    )}
                   </IconBtn>
                 </div>
               </Link>
             </div>
-            <div className="icon-wrapper">
+            <div
+              onClick={() => setShowMessages((prev) => !prev)}
+              className="icon-wrapper"
+            >
               <div className="icon message-icon">
                 <IconBtn Icon={AiOutlineMessage} aria-label="message">
-                  <p>2</p>
+                  {profile?.unread_messages_count ? (
+                    <p>{profile?.unread_messages_count}</p>
+                  ) : (
+                    ""
+                  )}
                 </IconBtn>
               </div>
             </div>
+            {showMessages && <div className="message-notification"></div>}
             <div className="icon-wrapper">
               <div className="icon setting-icon">
                 <Setting />

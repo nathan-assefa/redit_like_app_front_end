@@ -23,15 +23,7 @@ const Notifications = () => {
       </div>
     );
   }
-  // return (
-  //   <div>
-  //     <div className="all-notifications">
-  //       {notifications.map((notification) => (
-  //         <div key={notification.id}>{notification.content}</div>
-  //       ))}
-  //     </div>
-  //   </div>
-  // );
+
   return (
     <div className="notifications">
       <div className="notes">

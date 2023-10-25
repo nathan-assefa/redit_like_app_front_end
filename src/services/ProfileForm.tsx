@@ -81,48 +81,119 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
   }
 
   return (
+    // <form onSubmit={handleSubmit}>
+    //   <div className="profile-form-row">
+    //     <input
+    //       className="profile-input profile-title"
+    //       autoFocus={autoFocus}
+    //       value={bio}
+    //       onChange={(e) =>
+    //         dispatch({ type: "setBio", payload: e.target.value })
+    //       }
+    //     />
+    //     <input
+    //       className=" profile-input profile-content"
+    //       autoFocus={autoFocus}
+    //       value={website}
+    //       onChange={(e) =>
+    //         dispatch({ type: "setWebsite", payload: e.target.value })
+    //       }
+    //     />
+    //     <input
+    //       className=" profile-input profile-content"
+    //       autoFocus={autoFocus}
+    //       value={location}
+    //       onChange={(e) =>
+    //         dispatch({ type: "setLocation", payload: e.target.value })
+    //       }
+    //     />
+    //     <input
+    //       className=" profile-input profile-content"
+    //       autoFocus={autoFocus}
+    //       value={birthdate}
+    //       onChange={(e) =>
+    //         dispatch({ type: "setBirthDate", payload: e.target.value })
+    //       }
+    //     />
+    //     <input
+    //       className=" profile-input profile-content"
+    //       autoFocus={autoFocus}
+    //       value={phone_number}
+    //       onChange={(e) =>
+    //         dispatch({ type: "setPhoneNumber", payload: e.target.value })
+    //       }
+    //     />
+
+    //     <button className="profile-submit" type="submit" disabled={isLoading}>
+    //       {isLoading ? "cancel" : "Update"}
+    //     </button>
+    //   </div>
+    //   <div className="error" style={{ color: "red" }}>
+    //     {isError}
+    //   </div>
+    // </form>
     <form onSubmit={handleSubmit}>
       <div className="profile-form-row">
-        <input
-          className="profile-input profile-title"
-          autoFocus={autoFocus}
-          value={bio}
-          onChange={(e) =>
-            dispatch({ type: "setBio", payload: e.target.value })
-          }
-        />
-        <input
-          className=" profile-input profile-content"
-          autoFocus={autoFocus}
-          value={website}
-          onChange={(e) =>
-            dispatch({ type: "setWebsite", payload: e.target.value })
-          }
-        />
-        <input
-          className=" profile-input profile-content"
-          autoFocus={autoFocus}
-          value={location}
-          onChange={(e) =>
-            dispatch({ type: "setLocation", payload: e.target.value })
-          }
-        />
-        <input
-          className=" profile-input profile-content"
-          autoFocus={autoFocus}
-          value={birthdate}
-          onChange={(e) =>
-            dispatch({ type: "setBirthDate", payload: e.target.value })
-          }
-        />
-        <input
-          className=" profile-input profile-content"
-          autoFocus={autoFocus}
-          value={phone_number}
-          onChange={(e) =>
-            dispatch({ type: "setPhoneNumber", payload: e.target.value })
-          }
-        />
+        <div>
+          <label htmlFor="bio">Bio:</label>
+          <input
+            id="bio"
+            className="profile-input profile-bio"
+            autoFocus={autoFocus}
+            value={bio}
+            onChange={(e) =>
+              dispatch({ type: "setBio", payload: e.target.value })
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="website">Website:</label>
+          <input
+            id="website"
+            className="profile-input profile-content"
+            autoFocus={autoFocus}
+            value={website}
+            onChange={(e) =>
+              dispatch({ type: "setWebsite", payload: e.target.value })
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="location">Location:</label>
+          <input
+            id="location"
+            className="profile-input profile-content"
+            autoFocus={autoFocus}
+            value={location}
+            onChange={(e) =>
+              dispatch({ type: "setLocation", payload: e.target.value })
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="birthdate">Birthdate:</label>
+          <input
+            id="birthdate"
+            className="profile-input profile-content"
+            autoFocus={autoFocus}
+            value={birthdate}
+            onChange={(e) =>
+              dispatch({ type: "setBirthDate", payload: e.target.value })
+            }
+          />
+        </div>
+        <div>
+          <label htmlFor="phone_number">Phone Number:</label>
+          <input
+            id="phone_number"
+            className="profile-input profile-content"
+            autoFocus={autoFocus}
+            value={phone_number}
+            onChange={(e) =>
+              dispatch({ type: "setPhoneNumber", payload: e.target.value })
+            }
+          />
+        </div>
 
         <button className="profile-submit" type="submit" disabled={isLoading}>
           {isLoading ? "cancel" : "Update"}

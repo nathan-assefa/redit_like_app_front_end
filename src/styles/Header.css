@@ -313,3 +313,13 @@ header .container {
   color: rgb(228, 212, 212);
   font-family: "Poppins";
 }
+
+.message-notification {
+  width: 368px;
+  height: 465px;
+  background: #393947;
+  position: absolute;
+  z-index: 999999;
+  top: 6em;
+  right: 21em;
+}

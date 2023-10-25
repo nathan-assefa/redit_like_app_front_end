@@ -13,6 +13,7 @@ import "./styles/PostInCommunity.css";
 import "./styles/Comment.css";
 import "./styles/SinglePost.css";
 import "./styles/UserProifle.css";
+import "./styles/Message.css";
 // import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

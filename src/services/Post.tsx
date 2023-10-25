@@ -5,12 +5,14 @@ import SinglePost from "./SinglePost";
 import CommunityDetail from "./CommunityDetail";
 import CommunityRules from "./CommunityRules";
 import TopCommunities from "./TopCommunities";
+import { useAuth } from "../contexts/AuthContext";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createComment } from "../utils/comments";
 
 export const Post = () => {
   const { post, rootComments, postId } = usePost();
+  const { username } = useAuth();
 
   if (!post) {
     return <h3>No post found</h3>;
@@ -38,8 +40,7 @@ export const Post = () => {
           <SinglePost post={post} />
         </div>
         <h3 className="comment-header">
-          Write your comment as{" "}
-          <span>{post.author.first_name.toLocaleLowerCase()}</span>
+          Write your comment as <span>{username?.toLocaleLowerCase()}</span>
         </h3>
         <br />
         <section>

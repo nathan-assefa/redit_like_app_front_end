@@ -28,3 +28,19 @@ export function ClearNotificationCount(): Promise<ClearNotification> {
     },
   });
 }
+
+type MarkNotification = {
+  message: string;
+};
+
+export function markNotificatiosAsRead(
+  notificationId: string
+): Promise<MarkNotification> {
+  return fetchData(`${url}/mark-notification-as-read/${notificationId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}

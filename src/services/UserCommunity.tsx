@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCommunities } from "../utils/communities";
 import { Community } from "../types";
-import { useAuth } from "../contexts/AuthContext";
 import JoinOrLeaveCommunity from "./JoinOrLeaveCommunity";
 
-const UserCommunities = () => {
-  let { username } = useAuth();
+const UserCommunities = ({ userName }: { userName: string }) => {
   const {
     data: topCommunity,
     isLoading,
@@ -27,7 +25,7 @@ const UserCommunities = () => {
       <div className="user-community-picture"></div>
       <div className="t-names">
         <h3 className="join-user-community">
-          {`The communities ${username} is part of.`}
+          {`The communities ${userName} is part of.`}
         </h3>
         {topCommunity.slice(0, 8).map((community) => (
           <div

@@ -67,3 +67,11 @@ a {
   color: var(--color-light);
   font-size: 17px;
 }
+
+.not_read {
+  background: #373434;
+}
+
+.not_read:hover {
+  background: #4b4747;
+}
