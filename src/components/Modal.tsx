@@ -4,15 +4,6 @@ interface ModelData {
   onClose: () => void;
 }
 
-const MODAL_STYLE: React.CSSProperties = {
-  position: "fixed",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  background: "#fff",
-  zIndex: 1000,
-};
-
 const OVERLAY_STLES: React.CSSProperties = {
   position: "fixed",
   top: 0,
@@ -28,8 +19,10 @@ const Modal: React.FC<ModelData> = ({ open, children, onClose }) => {
   return (
     <>
       <div style={OVERLAY_STLES}></div>
-      <div style={MODAL_STYLE}>
-        <button onClick={onClose}>Close Modal</button>
+      <div className="user-modal">
+        <button className="follow-button modal-btn" onClick={onClose}>
+          Close
+        </button>
         {children}
       </div>
     </>

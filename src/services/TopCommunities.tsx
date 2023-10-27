@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getTopCommunities } from "../utils/communities";
 import { Community } from "../types";
 import JoinOrLeaveCommunity from "./JoinOrLeaveCommunity";
+import { Link } from "react-router-dom";
 
 const TopCommunities = () => {
   const {
@@ -28,7 +29,9 @@ const TopCommunities = () => {
         {topCommunity.slice(0, 6).map((community) => (
           <div className="top-community-name" key={community.id}>
             <div>
-              <p>{community.name}</p>
+              <Link to={`/communities/${community.id}`}>
+                <p className="c-d-name">{community.name}</p>
+              </Link>
               <p className="members-count">
                 {community.member_count}
                 <span> members</span>

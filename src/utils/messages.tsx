@@ -28,3 +28,27 @@ export function getMessages(recipientId: string): Promise<Messages[]> {
     },
   });
 }
+
+export function mostRecentMessages(): Promise<Messages[]> {
+  return fetchData(`${url}/most_recent_messages/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}
+
+type ClearMessage = {
+  message: string;
+};
+
+export function ClearMessageCount(): Promise<ClearMessage> {
+  return fetchData(`${url}/clear-unread-messages-count/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + String(accessToken),
+    },
+  });
+}

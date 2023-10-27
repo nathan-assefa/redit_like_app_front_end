@@ -4,9 +4,13 @@ import { useParams } from "react-router-dom";
 import { getMessages, sendMessage } from "../utils/messages";
 import MessageList from "./ListMessage";
 import MessageForm from "./MessageForm";
+import RecentMessages from "./RecentMessages";
+import { useEffect } from "react";
 
 const UserMessages = () => {
   const { id: userId } = useParams();
+
+  const queryClient = useQueryClient();
 
   const {
     data: messages,
@@ -20,8 +24,6 @@ const UserMessages = () => {
     return sendMessage(userId, content);
   });
 
-  const queryClient = useQueryClient();
-
   const handleMessageSend = async (content: string): Promise<void> => {
     try {
       await sendMessageMutation.mutateAsync(content);
@@ -31,6 +33,15 @@ const UserMessages = () => {
     }
   };
 
+  // Using useEffect, here I fetch messages whenever the userId changes
+  useEffect(() => {
+    const fetchMessages = async () => {
+      await queryClient.prefetchQuery(["messages"], () => getMessages(userId!));
+    };
+
+    fetchMessages();
+  }, [userId, queryClient]);
+
   if (isLoading) {
     return <div>loading...</div>;
   }
@@ -38,7 +49,7 @@ const UserMessages = () => {
   if (isError) {
     return (
       <div>
-        <p>Can't fetch notifications</p>
+        <p>Can't fetch messages</p>
       </div>
     );
   }
@@ -46,13 +57,16 @@ const UserMessages = () => {
   return (
     <div className="all-user-messages">
       <div className="user-messages">
+        <div className="m-list">
+          <RecentMessages />
+        </div>
         <div className="user-messages-list">
           {messages.map((message, index) => (
             <MessageList message={message} key={index} />
           ))}
         </div>
       </div>
-      <section>
+      <section className="user-msg-form-section">
         <div>
           <MessageForm
             isLoading={sendMessageMutation.isLoading}

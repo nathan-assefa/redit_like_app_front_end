@@ -3,9 +3,12 @@ import { getAllProfiles } from "../utils/userProfile";
 import { Profile } from "../types";
 import FollowOrUnfollowUser from "./FollowOrUnfollow";
 import { Link } from "react-router-dom";
-// import JoinOrLeaveCommunity from "./JoinOrLeaveCommunity";
 
-const AllUsersProfile = () => {
+interface ModelData {
+  onClose: () => void;
+}
+
+const AllUsersProfile: React.FC<ModelData> = ({ onClose }) => {
   const {
     data: allProfiles,
     isLoading,
@@ -23,20 +26,17 @@ const AllUsersProfile = () => {
   }
 
   return (
-    <div className="top-community-list all-participants">
-      <div className="participants"></div>
+    <div className="all-user">
       <div className="t-names">
-        <h3 className="follow-participants">
-          Follow interesting community members now!
-        </h3>
-        {allProfiles.slice(0, 6).map((profile) => (
+        {allProfiles.map((profile) => (
           <div className="top-community-name" key={profile.id}>
             <div className="participants-wrapper">
               <Link
+                onClick={onClose}
                 to={`/user_profile/${profile.id}`}
                 className="participants-picture"
               ></Link>
-              <div className="participants-info">
+              <div onClick={onClose} className="participants-info">
                 <Link to={`/user_profile/${profile.id}`}>
                   <p className="participat-name">@{profile.user.first_name}</p>
                 </Link>
@@ -46,7 +46,9 @@ const AllUsersProfile = () => {
                 </p>
               </div>
             </div>
-            <FollowOrUnfollowUser userId={profile.id.toString()} />
+            <div className="fol-unfol">
+              <FollowOrUnfollowUser userId={profile.id.toString()} />
+            </div>
           </div>
         ))}
       </div>

@@ -1,6 +1,7 @@
 import { Community } from "../types";
 import JoinOrLeaveCommunity from "./JoinOrLeaveCommunity";
 import DateIcon from "../icons/DateIcon";
+import { Link } from "react-router-dom";
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
   dateStyle: "medium",
@@ -16,7 +17,9 @@ const CommunityDetail = ({ community }: { community: Community }) => {
           key={community.id}
         >
           <div className="co-name">
-            <p>{community.name}</p>
+            <Link to={`/communities/${community.id}`}>
+              <p className="c-d-name">{community.name}</p>
+            </Link>
             <p className="members-count">
               {community.member_count}
               <span> members</span>

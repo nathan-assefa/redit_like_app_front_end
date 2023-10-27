@@ -1,10 +1,12 @@
 import { Messages } from "../types";
-// import AuthToken from "../utils/AuthToken";
-// import jwt_decode from "jwt-decode";
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
   //   dateStyle: "medium",
   timeStyle: "short",
+});
+
+const longDateFormatter = new Intl.DateTimeFormat(undefined, {
+  dateStyle: "medium",
 });
 
 const ListItem = ({ message }: { message: Messages }) => {
@@ -19,6 +21,9 @@ const ListItem = ({ message }: { message: Messages }) => {
           </p>
         </div>
       </div>
+      <p className="long-date-format">
+        {longDateFormatter.format(Date.parse(message?.created_at))}
+      </p>
     </div>
   );
 };

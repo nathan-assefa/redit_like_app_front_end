@@ -1,7 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Poppins:wght@400;700&display=swap");
 
 .community-detail-wrapper {
-  background: #2d2d39;
+  /* background: #41414e; */
+  background-image: url("../images/4-african-community.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
 }
 
@@ -10,9 +13,16 @@
 }
 
 .community-detail .c-name {
-  color: black;
+  color: white;
   text-align: center;
   font-family: "IBM+Plex+Sans";
+}
+
+.c-d-name {
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  font-family: "Poppins";
 }
 
 .no-of-members {
@@ -53,8 +63,7 @@
 .c-join {
   width: 90px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 21em;
   padding: 6px 20px;
   border: none;
   font-size: 14px;
@@ -65,16 +74,22 @@
 .c-desctiption {
   width: 700px;
   font-family: "Poppins";
-  margin-left: 3.9em;
+  font-size: 15px;
+  margin-left: 4em;
+  color: white;
+}
+
+.c-desctiption span {
+  color: #c9a527;
+  font-weight: bold;
 }
 
 .community-detail h3 {
-  color: black;
-  font-weight: bold;
-  font-size: 22px;
+  color: white;
+  font-size: 19px;
   font-family: "Poppins";
-  margin-left: 2.8em;
-  margin-bottom: -0.1px;
+  margin-left: 3.3em;
+  margin-bottom: 3em;
 }
 
 .top-c-lists {

@@ -101,7 +101,7 @@ const UpdateProfile = () => {
         <div></div>
         <div className="profile-left-column">
           <div className="user-c-lists">
-            <UserCommunities />
+            <UserCommunities userName={username!} />
           </div>
         </div>
         <div className="middle-part">

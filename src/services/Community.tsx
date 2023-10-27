@@ -2,6 +2,7 @@ import { useCommunity } from "../contexts/CommunityContext";
 import PostsInCommunity from "./PostsListInCommunity";
 import TopCommunities from "./TopCommunities";
 import CommunityRules from "./CommunityRules";
+import CommunityDetail from "./CommunityDetail";
 import JoinOrLeaveCommunity from "./JoinOrLeaveCommunity";
 
 export const Community = () => {
@@ -28,6 +29,7 @@ export const Community = () => {
         </div>
       </div>
       <div className="top-c-lists">
+        <CommunityDetail community={community!} />
         <TopCommunities />
         <CommunityRules />
       </div>

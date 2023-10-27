@@ -1,0 +1,25 @@
+.pop-up {
+  background: red;
+}
+
+.user-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #2d2d39;
+  z-index: 1000;
+  max-height: 550px;
+  width: 390px;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+/* .user-modal::-webkit-scrollbar {
+  display: none;
+} */
+
+.modal-btn {
+  background: #c9a527;
+  color: white;
+}

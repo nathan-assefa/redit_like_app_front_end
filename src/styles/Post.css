@@ -5,6 +5,7 @@
 .post-wrapper {
   display: flex;
   margin-left: 2em;
+  margin-top: 2em;
 }
 
 .single-post {

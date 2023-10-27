@@ -95,6 +95,7 @@ export interface Profile {
 }
 
 export interface Messages {
+  id: number;
   created_at: string;
   updated_at: string;
   sender: User;
