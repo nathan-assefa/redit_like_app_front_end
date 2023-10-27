@@ -238,7 +238,26 @@ label {
   color: rgb(112, 107, 107);
 }
 
-.user-bio-title {
+.see-user-info {
+  display: block;
+  margin-bottom: 0.5em;
+  padding: 8px 31px;
+  color: #71c6dd;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  border: none;
+  background: #2d2d39;
+  cursor: pointer;
+  margin-left: 1.5em;
+}
+
+.website-format span {
+  color: rgb(184, 171, 171);
+  font-size: 14px;
+}
+
+.user-profile-info {
   margin-bottom: -1em;
   color: #9fb6bd;
 }

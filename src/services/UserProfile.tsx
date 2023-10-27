@@ -6,14 +6,16 @@ import SinglePostInCommunity from "../services/SinglePostInCommunity";
 import { useUserProfile } from "../contexts/UserProfileContext";
 import FollowOrUnfollowUser from "./FollowOrUnfollow";
 import MessageIcon from "../icons/MessageIcon";
+import { useState } from "react";
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
   dateStyle: "medium",
 });
 
-const UpdateProfile = () => {
+const UserProfile = () => {
   const { post } = usePostList();
   const { profile, isLoading, isError } = useUserProfile();
+  const [seeProfileDetail, setSeeProfileDtail] = useState(false);
 
   const filteredPosts = post.filter((p) => p.author.id === profile?.user.id);
   const postsUserParticipates = post.filter((post) =>
@@ -62,14 +64,49 @@ const UpdateProfile = () => {
               </Link>
             </div>
           </div>
-          <h3 className=" more-info user-bio-title">Bio</h3>
-          <p className="more-info u-bio">
-            {profile?.bio ? profile?.bio : "No Bio yet"}
-          </p>
+          <button
+            className="see-user-info"
+            onClick={() => setSeeProfileDtail((prev) => !prev)}
+          >
+            See more about {profile?.user.first_name}
+          </button>
+          {seeProfileDetail && (
+            <div className="user-pro-related-info">
+              <h3 className=" more-info user-profile-info user-bio-title">
+                Bio
+              </h3>
+              <p className="more-info user-p-con u-bio">
+                {profile?.bio ? profile?.bio : "No Bio yet"}
+              </p>
+              <h3 className=" more-info user-profile-info user-bio-title">
+                Website
+              </h3>
+              <p className="more-info user-p-con u-bio">
+                {profile?.website
+                  ? profile?.website
+                  : "Social media data not provided."}
+              </p>
+              <h3 className=" more-info user-profile-info user-bio-title">
+                Location
+              </h3>
+              <p className="more-info user-p-con u-bio">
+                {profile?.location
+                  ? profile?.location
+                  : "Location details not yet provided."}
+              </p>
+              <h3 className=" more-info user-profile-info user-bio-title">
+                Phone Number
+              </h3>
+              <p className="more-info user-p-con u-bio">
+                {profile?.phone_number
+                  ? profile?.phone_number
+                  : "No phone number information available."}
+              </p>
+            </div>
+          )}
           <h3 className="more-info user-participation">
             {`See what ${profile?.user.first_name}'s communities are discussing.`}
           </h3>
-
           <div className="posts-list">
             {postsUserParticipates.map((p) => (
               <div className="single-post user-single-post" key={p.id}>
@@ -117,4 +154,4 @@ const UpdateProfile = () => {
   );
 };
 
-export default UpdateProfile;
+export default UserProfile;

@@ -23,6 +23,7 @@ const UpdateProfile = () => {
   const accessToken = AuthToken();
 
   const [isEditing, setIsEditing] = useState(false);
+  const [seeProfileDetail, setSeeProfileDtail] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -38,20 +39,19 @@ const UpdateProfile = () => {
     bio?: string;
     website?: string;
     location?: string;
-    birthdate?: string;
     phone_number?: string;
   }
   const apiUrl: string = "http://localhost:8000/api";
 
   const updateProfileMutation = useMutation(
     async (updatedPost: UpdatedProfile) => {
-      const { bio, website, location, birthdate, phone_number } = updatedPost;
+      const { bio, website, location, phone_number } = updatedPost;
       const url = `${apiUrl}/update-profile/`;
       const headers = {
         "Content-Type": "application/json",
         Authorization: "Bearer " + String(accessToken),
       };
-      const data = { bio, website, location, birthdate, phone_number };
+      const data = { bio, website, location, phone_number };
 
       try {
         const response = await axios.patch(url, data, { headers });
@@ -71,7 +71,6 @@ const UpdateProfile = () => {
     bio: string;
     website: string;
     location: string;
-    birthdate: string;
     phone_number: string;
   }): Promise<void> => {
     try {
@@ -79,11 +78,11 @@ const UpdateProfile = () => {
         bio: formData.bio,
         website: formData.website,
         location: formData.location,
-        birthdate: formData.birthdate,
         phone_number: formData.phone_number,
       });
+      setIsEditing((prev) => !prev);
     } catch (error) {
-      console.error("Error updating post:", error);
+      Promise.reject(error);
     }
   };
 
@@ -118,10 +117,46 @@ const UpdateProfile = () => {
               </div>
             </div>
           </div>
-          <h3 className=" more-info user-bio-title">Bio</h3>
-          <p className="more-info u-bio">
-            {profile?.bio ? profile?.bio : "No Bio yet"}
-          </p>
+          <button
+            className="see-user-info"
+            onClick={() => setSeeProfileDtail((prev) => !prev)}
+          >
+            See more about yourself
+          </button>
+          {seeProfileDetail && (
+            <div className="user-pro-related-info">
+              <h3 className=" more-info user-profile-info user-bio-title">
+                Bio
+              </h3>
+              <p className="more-info user-p-con u-bio">
+                {profile?.bio ? profile?.bio : "No Bio yet"}
+              </p>
+              <h3 className=" more-info user-profile-info user-bio-title">
+                Website
+              </h3>
+              <p className="more-info user-p-con u-bio">
+                {profile?.website
+                  ? profile?.website
+                  : "Social media data not provided."}
+              </p>
+              <h3 className=" more-info user-profile-info user-bio-title">
+                Location
+              </h3>
+              <p className="more-info user-p-con u-bio">
+                {profile?.location
+                  ? profile?.location
+                  : "Location details not yet provided."}
+              </p>
+              <h3 className=" more-info user-profile-info user-bio-title">
+                Phone Number
+              </h3>
+              <p className="more-info user-p-con u-bio">
+                {profile?.phone_number
+                  ? profile?.phone_number
+                  : "No phone number information available."}
+              </p>
+            </div>
+          )}
           <button
             onClick={() => setIsEditing((prev) => !prev)}
             className="edit-user-profile"
@@ -138,7 +173,6 @@ const UpdateProfile = () => {
                 bio: profile?.bio || "",
                 website: profile?.website || "",
                 location: profile?.location || "",
-                birthdate: profile?.birthdate || "",
                 phone_number: profile?.phone_number || "",
               }}
             />
