@@ -7,6 +7,7 @@ import jwt_decode from "jwt-decode";
 import { Community } from "../types";
 import { useState } from "react";
 import OptionIcon from "../icons/OptionIcon";
+import { useNavigate } from "react-router-dom";
 
 interface PostFormData {
   title: string;
@@ -15,6 +16,7 @@ interface PostFormData {
 
 const CreatePost = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const accessToken = AuthToken();
 
@@ -50,6 +52,7 @@ const CreatePost = () => {
       }
       setErrorMessage("");
       await createPostMutation.mutateAsync(formData);
+      navigate("/posts");
     } catch (error) {
       console.error("Error creating a post:", error);
     }

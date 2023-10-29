@@ -20,6 +20,19 @@ const JoinOrLeaveCommunity = ({ communityId }: { communityId: string }) => {
     () => getMembershipStatus(communityId)
   );
 
+  /*
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    // When the number of members in the community changes, prefetch 'getCommunities'.
+    const handleMembersChange = async () => {
+      await queryClient.prefetchQuery(["communities"], getCommunities);
+    };
+
+    handleMembersChange();
+  }, [community?.member_count, queryClient]);
+  */
+
   const [isMember, setIsMember] = useState(false);
 
   const queryClient = useQueryClient();

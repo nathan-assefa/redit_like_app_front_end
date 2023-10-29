@@ -18,6 +18,7 @@ const FollowOrUnfollowUser = ({ userId }: { userId: string }) => {
     return followOrUnfollow(userId).then(() => {
       setIsFollow((prevIsFollow) => !prevIsFollow);
       queryClient.invalidateQueries(["all_profiles"]);
+      queryClient.invalidateQueries(["profiles"]);
     });
   });
 

@@ -7,7 +7,7 @@
 
 body {
   background: #515050;
-  /* background: #403e3e; */
+  background-position-y: 50%;
   font-family: "Poppins";
   margin: 0;
   padding: 0;
@@ -209,12 +209,13 @@ header .container {
 .pf-op-icon {
   margin-top: 0.2em;
   position: absolute;
-  right: -0.5em;
+  right: -1.5em;
   top: -0.1em;
 }
 
 .profile-info p {
   margin-left: -0.5em;
+  margin-right: 0.5em;
   color: white;
 }
 

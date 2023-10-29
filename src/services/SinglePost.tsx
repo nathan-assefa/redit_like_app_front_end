@@ -9,6 +9,7 @@ import IconForReactions from "../IconButtons/IconForReactions";
 import Comment from "../icons/Comment";
 import ThreeDots from "../icons/ThreeDots";
 import SaveIcon from "../icons/SaveIcon";
+import { createBookMark } from "../utils/book_marks";
 import AuthToken from "../utils/AuthToken";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
@@ -20,6 +21,7 @@ import {
   downvotePost,
   lovePost,
   likePost,
+  deletePost,
   // updatePost,
 } from "../utils/posts";
 import TimeAgo from "../utils/getTimeAgo";
@@ -35,6 +37,8 @@ const SinglePost = ({ post }: { post: Post }) => {
   const [postLove, setPostLove] = useState(false);
   const [postLike, setPostLike] = useState(false);
   const [horizontalMenu, setHorizontalMenu] = useState(false);
+  const [isBookMarked, setIsBookMarked] = useState(false);
+  // const [isDeleting, setIsDeleting] = useState(false);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -110,10 +114,23 @@ const SinglePost = ({ post }: { post: Post }) => {
     }
   };
 
+  const deletePostMutation = useMutation(() => {
+    return deletePost(post.id.toString());
+  });
+
+  const onPostDelete = async (): Promise<void> => {
+    try {
+      await deletePostMutation.mutateAsync();
+      queryClient.invalidateQueries(["post"]);
+    } catch (error) {
+      Promise.reject(error);
+    }
+  };
+
   const upvotePostMutation = useMutation(() => {
-    return upvotePost(post.id.toString()).then(() =>
-      setPostVote((prev) => !prev)
-    );
+    return upvotePost(post.id.toString())
+      .then(() => setPostVote((prev) => !prev))
+      .then(() => console.log(postVote));
   });
 
   const onPostVote = async (): Promise<void> => {
@@ -170,6 +187,21 @@ const SinglePost = ({ post }: { post: Post }) => {
     }
   };
 
+  const BookMarkPostMutation = useMutation(() => {
+    return createBookMark(post.id.toString()).then(() =>
+      setIsBookMarked((prev) => !prev)
+    );
+  });
+
+  const onPostBookMark = async (): Promise<void> => {
+    try {
+      await BookMarkPostMutation.mutateAsync();
+      queryClient.invalidateQueries(["post"]);
+    } catch (error) {
+      Promise.reject(error);
+    }
+  };
+
   return (
     <div>
       <div className="single-post">
@@ -189,11 +221,16 @@ const SinglePost = ({ post }: { post: Post }) => {
             </Link>
           </div>
           {horizontalMenu && userId === post.author.id && (
-            <div
-              className="edit-post"
-              onClick={() => setIsEditing((prev) => !prev)}
-            >
-              Edit
+            <div className="post-deletion-edition">
+              <div
+                className="editing-post"
+                onClick={() => setIsEditing((prev) => !prev)}
+              >
+                Edit
+              </div>
+              <div className="delete-post" onClick={onPostDelete}>
+                Delete
+              </div>
             </div>
           )}
           {isEditing ? (
@@ -210,7 +247,18 @@ const SinglePost = ({ post }: { post: Post }) => {
               />
             </div>
           ) : (
-            <div className="post-content">{post.content}</div>
+            <div>
+              <div className="post-content">{post.content}</div>
+              <div>
+                {post.post_picture && (
+                  <img
+                    className="post-picture"
+                    src={`${post.post_picture}`}
+                    alt=""
+                  />
+                )}
+              </div>
+            </div>
           )}
           <div className="post-info">
             <p className="post-author">Posted by {post.author.first_name}</p>
@@ -263,8 +311,19 @@ const SinglePost = ({ post }: { post: Post }) => {
               </IconForReactions>
             </div>
             <div className="save-btn">
-              <IconForReactions Icon={SaveIcon} aria-label="saveIcon">
-                <p className="save-name">save</p>
+              <IconForReactions
+                onClick={onPostBookMark}
+                isActive={isBookMarked}
+                Icon={SaveIcon}
+                aria-label="saveIcon"
+              >
+                <p
+                  className={
+                    isBookMarked
+                      ? "saved-name save-name"
+                      : "save-name not-saved"
+                  }
+                >{`${isBookMarked ? "saved" : "save"}`}</p>
               </IconForReactions>
             </div>
           </div>

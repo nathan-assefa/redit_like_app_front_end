@@ -4,7 +4,6 @@ type PostFormProps = {
   isLoading: boolean;
   isError: boolean;
   onSubmit: (formData: { title: string; content: string }) => Promise<void>;
-  // initialValue?: string;
   initialValue?: { title: string; content: string };
   autoFocus?: boolean;
 };
@@ -13,7 +12,6 @@ const PostForm: React.FC<PostFormProps> = ({
   isLoading,
   isError,
   onSubmit,
-  // initialValue = "",
   initialValue = { title: "", content: "" },
   autoFocus = false,
 }) => {
@@ -35,8 +33,6 @@ const PostForm: React.FC<PostFormProps> = ({
   };
 
   const [{ title, content }, dispatch] = useReducer(reducer, {
-    // title: initialValue,
-    // content: initialValue,
     title: initialValue.title, // Initialize with the title property
     content: initialValue.content,
   });
@@ -51,22 +47,34 @@ const PostForm: React.FC<PostFormProps> = ({
   return (
     <form onSubmit={handleSubmit}>
       <div className="post-form-row">
-        <textarea
-          className="post-input post-title"
-          autoFocus={autoFocus}
-          value={title}
-          onChange={(e) =>
-            dispatch({ type: "setTitle", payload: e.target.value })
-          }
-        />
-        <textarea
-          className=" post-input post-content"
-          autoFocus={autoFocus}
-          value={content}
-          onChange={(e) =>
-            dispatch({ type: "setContent", payload: e.target.value })
-          }
-        />
+        <div className="input-wrapper">
+          <label className="label-for-title" htmlFor="post-title">
+            Title:
+          </label>
+          <textarea
+            id="post-title"
+            className="post-input post-title"
+            autoFocus={autoFocus}
+            value={title}
+            onChange={(e) =>
+              dispatch({ type: "setTitle", payload: e.target.value })
+            }
+          />
+        </div>
+        <div className="input-wrapper">
+          <label className="label-for-content" htmlFor="post-content">
+            Content:
+          </label>
+          <textarea
+            id="post-content"
+            className="post-input post-content"
+            autoFocus={autoFocus}
+            value={content}
+            onChange={(e) =>
+              dispatch({ type: "setContent", payload: e.target.value })
+            }
+          />
+        </div>
         <button className="post-submit" type="submit" disabled={isLoading}>
           {isLoading ? "cancel" : "Post"}
         </button>

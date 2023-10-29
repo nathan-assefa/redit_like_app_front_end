@@ -80,6 +80,14 @@
   letter-spacing: 0.017rem;
 }
 
+.post-picture {
+  width: 600px;
+  height: 300px;
+  margin-left: 2em;
+  margin-top: 0.5em;
+  padding-right: -5em;
+}
+
 .post-info {
   display: flex;
   margin-top: -0.2em;

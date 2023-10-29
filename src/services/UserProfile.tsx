@@ -6,6 +6,7 @@ import SinglePostInCommunity from "../services/SinglePostInCommunity";
 import { useUserProfile } from "../contexts/UserProfileContext";
 import FollowOrUnfollowUser from "./FollowOrUnfollow";
 import MessageIcon from "../icons/MessageIcon";
+import BookMarks from "./BookMarks";
 import { useState } from "react";
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
@@ -41,7 +42,14 @@ const UserProfile = () => {
         </div>
         <div className="middle-part">
           <div className="p-header">
-            <div className="profile-picuture"></div>
+            <div
+              className="profile-picuture"
+              style={
+                profile?.profile_picture
+                  ? { backgroundImage: `url(${profile.profile_picture})` }
+                  : {}
+              }
+            ></div>
             <div className="user-name">{profile?.user.first_name}</div>
             <div className="follow-info">
               <div className="follow followers">

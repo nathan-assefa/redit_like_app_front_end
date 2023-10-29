@@ -32,21 +32,6 @@ export function createPost(
   });
 }
 
-// export function updatePost(
-//   postId: string,
-//   title?: string | undefined,
-//   content?: string | undefined
-// ): Promise<Post> {
-//   return fetchData(`${url}/posts/${postId}`, {
-//     method: "PATCH",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: "Bearer " + String(accessToken),
-//     },
-//     data: { content, title },
-//   });
-// }
-
 export async function updatePost(
   postId: string,
   title?: string | undefined,

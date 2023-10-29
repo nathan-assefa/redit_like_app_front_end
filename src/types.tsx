@@ -45,6 +45,7 @@ export interface Post {
   liked_by: User[];
   loved_by: User[];
   comments: Comment[];
+  post_picture: string | null;
 }
 
 export interface Comment {
@@ -92,6 +93,7 @@ export interface Profile {
   unread_notifications_count: number;
   followers_count: number;
   following_count: number;
+  bookmarks: BookMark[];
 }
 
 export interface Messages {
@@ -103,4 +105,12 @@ export interface Messages {
   content: string;
   timestamp: string;
   is_read: boolean;
+}
+
+export interface BookMark {
+  created_at: string;
+  updated_at: string;
+  user: User;
+  post: Post;
+  timestamp: string;
 }

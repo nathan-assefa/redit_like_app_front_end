@@ -72,9 +72,9 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
   const queryClient = useQueryClient();
 
   const upvoteCommentMutation = useMutation(() => {
-    return upvoteComment(comment.id.toString()).then(() =>
-      setCommentVote((prev) => !prev)
-    );
+    return upvoteComment(comment.id.toString())
+      .then(() => setCommentVote((prev) => !prev))
+      .then(() => console.log(commentVote));
   });
 
   const onCommentVote = async (): Promise<void> => {

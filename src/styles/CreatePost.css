@@ -41,6 +41,23 @@
   margin-bottom: 2em;
 }
 
+.post-form-row label {
+  margin-left: 4.5em;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(196, 182, 182);
+}
+
+.label-for-title {
+  margin-bottom: 2em;
+  display: block;
+  margin-top: -1.5em;
+}
+
+.label-for-content {
+  margin-bottom: -1.8em;
+}
+
 .post-form-row .post-title {
   display: block;
   resize: none;
@@ -54,6 +71,8 @@
   line-height: 1.4;
   background: var(--grayish-color);
   color: black;
+  margin-top: -1.8em;
+  margin-bottom: 1.5em;
 }
 
 .post-form-row .post-content {
@@ -64,7 +83,7 @@
   border-radius: 0.5em;
   padding: 0.5em;
   margin-left: 4.9em;
-  margin-top: 1em;
+  margin-top: 0.4em;
   font-size: inherit;
   font-family: inherit;
   line-height: 1.4;

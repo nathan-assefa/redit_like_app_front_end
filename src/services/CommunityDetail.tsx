@@ -14,14 +14,14 @@ const CommunityDetail = ({ community }: { community: Community }) => {
         <div className="community-3"></div>
         <div
           className="top-community-name c-name-and-button"
-          key={community.id}
+          key={community?.id}
         >
           <div className="co-name">
-            <Link to={`/communities/${community.id}`}>
-              <p className="c-d-name">{community.name}</p>
+            <Link to={`/communities/${community?.id}`}>
+              <p className="c-d-name">{community?.name}</p>
             </Link>
             <p className="members-count">
-              {community.member_count}
+              {community?.member_count}
               <span> members</span>
             </p>
           </div>

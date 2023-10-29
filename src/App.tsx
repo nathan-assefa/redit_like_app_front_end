@@ -14,6 +14,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export const queryClient = new QueryClient();
 
+import RegisterUser from "./pages/RegisterUser";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
@@ -30,6 +31,9 @@ function App() {
         <AuthProvider>
           <PostListProvider>
             <Header />
+            <Routes>
+              <Route path="/register" element={<RegisterUser />} />
+            </Routes>
             <Routes>
               <Route element={<PrivateRoutes />}>
                 <Route path="/" element={<HomePage />} />

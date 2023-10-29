@@ -44,3 +44,26 @@
   margin-left: 0.8em;
   color: #c0b0b0;
 }
+
+.post-deletion-edition {
+  color: white;
+}
+
+.post-deletion-edition {
+  background: rgb(76, 70, 70);
+  position: absolute;
+  left: 12em;
+  padding: 4px 8px;
+  top: 2.6em;
+  border-radius: 6px;
+}
+
+.post-deletion-edition .editing-post:hover {
+  background-color: rgb(89, 82, 82);
+  cursor: pointer;
+}
+
+.post-deletion-edition .delete-post:hover {
+  background-color: rgb(89, 82, 82);
+  cursor: pointer;
+}

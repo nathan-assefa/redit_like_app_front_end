@@ -14,7 +14,7 @@ import { getUserProfile } from "../utils/userProfile";
 import { Profile } from "../types";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import useCommunity from "../components/useCommunity";
+import useCommunity from "../hooks/useCommunity";
 import RecentMessages from "../services/RecentMessages";
 import AllUserProfile from "../services/AllUserProfiles";
 
@@ -80,46 +80,57 @@ const Header = () => {
   return (
     <>
       <header>
-        <div className="user-auth">
-          <div className="profile-info">
-            {username && <p>@{username}</p>}
-            {profileMenu &&
-              (username ? (
-                <div className="user-setting">
-                  <Link
-                    onClick={() => setProfileMenu(false)}
-                    to="/update_profile"
-                  >
-                    <p>Profile</p>
+        {username && (
+          <div className="user-auth">
+            <div className="profile-info">
+              {username && <p>@{username}</p>}
+              {profileMenu &&
+                (username ? (
+                  <div className="user-setting">
+                    <Link
+                      onClick={() => setProfileMenu(false)}
+                      to="/update_profile"
+                    >
+                      <p>Profile</p>
+                    </Link>
+                    <Link
+                      onClick={() => setProfileMenu(false)}
+                      to="/create_community"
+                    >
+                      <p>Create Community</p>
+                    </Link>
+                    <Link
+                      onClick={() => setProfileMenu(false)}
+                      to="/create_post"
+                    >
+                      <p>Create Post</p>
+                    </Link>
+                    <p className="logout" onClick={logOutUser}>
+                      Logout
+                    </p>
+                  </div>
+                ) : (
+                  <Link className="login" to="/login">
+                    Login
                   </Link>
-                  <Link
-                    onClick={() => setProfileMenu(false)}
-                    to="/create_community"
-                  >
-                    <p>Create Community</p>
-                  </Link>
-                  <Link onClick={() => setProfileMenu(false)} to="/create_post">
-                    <p>Create Post</p>
-                  </Link>
-                  <p className="logout" onClick={logOutUser}>
-                    Logout
-                  </p>
-                </div>
-              ) : (
-                <Link className="login" to="/login">
-                  Login
-                </Link>
-              ))}
+                ))}
+            </div>
+            <div></div>
+            <Link to="update_profile">
+              <div
+                style={{
+                  backgroundImage: `url(${profile?.profile_picture})`,
+                }}
+                className="profile-picuture"
+              ></div>
+            </Link>
+            <div className="option-icon pf-op-icon">
+              <p onClick={() => setProfileMenu((prev) => !prev)}>
+                <ProfileListIcon />
+              </p>
+            </div>
           </div>
-          <Link to="update_profile">
-            <div className="profile-picture"></div>
-          </Link>
-          <div className="option-icon pf-op-icon">
-            <p onClick={() => setProfileMenu((prev) => !prev)}>
-              <ProfileListIcon />
-            </p>
-          </div>
-        </div>
+        )}
         {homeOption && (
           <div className="home-drop-down">
             <p className="your-communities">Your communities</p>
@@ -185,95 +196,101 @@ const Header = () => {
           <Link to="/posts" className="logo">
             Opinion<span>Sphere</span>
           </Link>
-          <div className="home-menu">
-            <div className="home-menu-icon">
-              <HomeIcon />
-            </div>
-            <Link to="/posts">
-              <p className="home">Home</p>
-            </Link>
+          {username && (
+            <div className="home-menu">
+              <div className="home-menu-icon">
+                <HomeIcon />
+              </div>
+              <Link to="/posts">
+                <p className="home">Home</p>
+              </Link>
 
-            <div className="option-icon">
-              <p onClick={() => setHomeOption((prev) => !prev)}>
-                <OptionIcon />
-              </p>
-            </div>
-          </div>
-          <div className="search-header">
-            <div className="magnifier">
-              <Magnifier />
-            </div>
-            <input
-              className="search"
-              placeholder="Search Posts by Title"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
-          <div className="header-icons">
-            <div className="icon-wrapper">
-              <div className="icon create-post-icon">
-                <Link to="create_post">
-                  <CreatePost />
-                </Link>
+              <div className="option-icon">
+                <p onClick={() => setHomeOption((prev) => !prev)}>
+                  <OptionIcon />
+                </p>
               </div>
             </div>
-            <div className="icon-wrapper">
-              <Link to="notifications">
-                <div className="icon notification-icon">
+          )}
+          {username && (
+            <div className="search-header">
+              <div className="magnifier">
+                <Magnifier />
+              </div>
+              <input
+                className="search"
+                placeholder="Search Posts by Title"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+          )}
+          {username && (
+            <div className="header-icons">
+              <div className="icon-wrapper">
+                <div className="icon create-post-icon">
+                  <Link to="create_post">
+                    <CreatePost />
+                  </Link>
+                </div>
+              </div>
+              <div className="icon-wrapper">
+                <Link to="notifications">
+                  <div className="icon notification-icon">
+                    <IconBtn
+                      onClick={onClearNotificationCount}
+                      isActive={clearNotification}
+                      Icon={AiOutlineBell}
+                      aria-label="notification"
+                    >
+                      {profile?.unread_notifications_count ? (
+                        <p>{profile?.unread_notifications_count}</p>
+                      ) : (
+                        ""
+                      )}
+                    </IconBtn>
+                  </div>
+                </Link>
+              </div>
+              <div
+                onClick={() => setShowMessages((prev) => !prev)}
+                className="icon-wrapper"
+              >
+                <div className="icon message-icon">
                   <IconBtn
-                    onClick={onClearNotificationCount}
-                    isActive={clearNotification}
-                    Icon={AiOutlineBell}
-                    aria-label="notification"
+                    onClick={onClearMessageCount}
+                    isActive={clearMessage}
+                    Icon={AiOutlineMessage}
+                    aria-label="message"
                   >
-                    {profile?.unread_notifications_count ? (
-                      <p>{profile?.unread_notifications_count}</p>
+                    {profile?.unread_messages_count ? (
+                      <p>{profile?.unread_messages_count}</p>
                     ) : (
                       ""
                     )}
                   </IconBtn>
                 </div>
-              </Link>
-            </div>
-            <div
-              onClick={() => setShowMessages((prev) => !prev)}
-              className="icon-wrapper"
-            >
-              <div className="icon message-icon">
-                <IconBtn
-                  onClick={onClearMessageCount}
-                  isActive={clearMessage}
-                  Icon={AiOutlineMessage}
-                  aria-label="message"
+              </div>
+              {showMessages && (
+                <div
+                  onClick={() => setShowMessages(false)}
+                  className="message-notification"
                 >
-                  {profile?.unread_messages_count ? (
-                    <p>{profile?.unread_messages_count}</p>
-                  ) : (
-                    ""
-                  )}
-                </IconBtn>
+                  <RecentMessages />
+                </div>
+              )}
+              <div onClick={() => setIsOpen(true)} className="icon-wrapper">
+                <div className="icon setting-icon">
+                  <GroupIcon />
+                </div>
+              </div>
+              <div className="pop-up">
+                <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+                  <AllUserProfile onClose={() => setIsOpen(false)} />
+                </Modal>
               </div>
             </div>
-            {showMessages && (
-              <div
-                onClick={() => setShowMessages(false)}
-                className="message-notification"
-              >
-                <RecentMessages />
-              </div>
-            )}
-            <div onClick={() => setIsOpen(true)} className="icon-wrapper">
-              <div className="icon setting-icon">
-                <GroupIcon />
-              </div>
-            </div>
-            <div className="pop-up">
-              <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-                <AllUserProfile onClose={() => setIsOpen(false)} />
-              </Modal>
-            </div>
-          </div>
+          )}
         </div>
       </header>
     </>

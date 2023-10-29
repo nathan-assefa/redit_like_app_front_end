@@ -34,6 +34,11 @@ const AllUsersProfile: React.FC<ModelData> = ({ onClose }) => {
               <Link
                 onClick={onClose}
                 to={`/user_profile/${profile.id}`}
+                style={
+                  profile?.profile_picture
+                    ? { backgroundImage: `url(${profile.profile_picture})` }
+                    : {}
+                }
                 className="participants-picture"
               ></Link>
               <div onClick={onClose} className="participants-info">

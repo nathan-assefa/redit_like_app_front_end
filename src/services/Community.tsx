@@ -29,7 +29,7 @@ export const Community = () => {
         </div>
       </div>
       <div className="top-c-lists">
-        <CommunityDetail community={community!} />
+        {community && <CommunityDetail community={community} />}
         <TopCommunities />
         <CommunityRules />
       </div>

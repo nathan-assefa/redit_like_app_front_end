@@ -13,6 +13,12 @@
   position: relative;
 }
 
+.community-form-row label {
+  margin-left: 3.7em;
+  font-size: 16px;
+  color: rgb(227, 213, 213);
+}
+
 .community-form-row .community-name {
   display: block;
   resize: none;
@@ -21,11 +27,21 @@
   border-radius: 0.5em;
   padding: 0.5em;
   margin-left: 4.9em;
-  font-size: 18px;
-  font-family: inherit;
+  font-size: 12px;
+  font-family: "Poppins";
   line-height: 1.4;
   background: var(--grayish-color);
-  color: black;
+  letter-spacing: 2px;
+  /* color: black; */
+}
+
+.insert-c-name {
+  margin-bottom: 1.3em;
+}
+
+.community-form-row .community-description {
+  height: 300px;
+  /* margin-top: 1em; */
 }
 
 .post-input:focus {
@@ -35,8 +51,8 @@
 
 .community-submit {
   position: absolute;
-  bottom: -2.8em;
-  right: 32.5em;
+  bottom: 1em;
+  right: 35.5em;
   padding: 6px 18px;
   border-radius: 20px;
   background: #969292;

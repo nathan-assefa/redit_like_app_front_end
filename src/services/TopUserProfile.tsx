@@ -34,6 +34,11 @@ const TopUsersProfile = () => {
             <div className="participants-wrapper">
               <Link
                 to={`/user_profile/${profile.id}`}
+                style={
+                  profile?.profile_picture
+                    ? { backgroundImage: `url(${profile.profile_picture})` }
+                    : {}
+                }
                 className="participants-picture"
               ></Link>
               <div className="participants-info">
