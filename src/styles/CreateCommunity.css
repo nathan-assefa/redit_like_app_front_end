@@ -35,6 +35,11 @@
   /* color: black; */
 }
 
+.community-name-for-form {
+  color: rgb(60, 57, 57);
+  font-size: 16px;
+}
+
 .insert-c-name {
   margin-bottom: 1.3em;
 }
@@ -49,10 +54,15 @@
   outline: none;
 }
 
+.c-input-name {
+  color: rgb(26, 25, 25);
+  font-size: 16px;
+}
+
 .community-submit {
   position: absolute;
-  bottom: 1em;
-  right: 35.5em;
+  /* bottom: -0.1em; */
+  right: 34.5em;
   padding: 6px 18px;
   border-radius: 20px;
   background: #969292;
@@ -61,6 +71,6 @@
   display: flex;
   border: none;
   align-items: center;
-  color: rgb(197, 187, 187);
+  color: rgb(105, 105, 105);
   cursor: pointer;
 }

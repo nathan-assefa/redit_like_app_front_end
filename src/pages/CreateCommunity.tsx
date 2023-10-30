@@ -14,6 +14,7 @@ const CreateCommunity = () => {
     try {
       await createCommunityMutation.mutateAsync(name);
       queryClient.invalidateQueries(["post"]);
+      queryClient.invalidateQueries(["community"]);
     } catch (error) {
       Promise.reject(error);
     }

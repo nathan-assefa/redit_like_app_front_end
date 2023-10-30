@@ -158,6 +158,7 @@ const RegistrationForm: React.FC<UserRegistrationFormProps> = ({
                 Password:
               </label>
               <input
+                type="password"
                 id="password"
                 className="password-input reg-input"
                 autoFocus={autoFocus}
@@ -175,6 +176,7 @@ const RegistrationForm: React.FC<UserRegistrationFormProps> = ({
                 Confirm Password:
               </label>
               <input
+                type="password"
                 id="confirm_password"
                 className="confirm-password-input reg-input"
                 autoFocus={autoFocus}

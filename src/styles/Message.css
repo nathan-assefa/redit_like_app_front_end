@@ -77,6 +77,10 @@ a {
   position: relative;
 }
 
+.from-sender-message {
+  background: #454444;
+}
+
 .u-message {
   color: rgb(250, 237, 237);
   font-family: "IBM+Plex+Sans";
@@ -148,3 +152,7 @@ a {
   margin-top: -1em;
   margin-bottom: 1.8em;
 }
+
+/* .from-recipient {
+  background: red;
+} */

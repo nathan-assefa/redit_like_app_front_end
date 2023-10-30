@@ -118,9 +118,11 @@ const Header = () => {
             <div></div>
             <Link to="update_profile">
               <div
-                style={{
-                  backgroundImage: `url(${profile?.profile_picture})`,
-                }}
+                style={
+                  profile?.profile_picture
+                    ? { backgroundImage: `url(${profile.profile_picture})` }
+                    : {}
+                }
                 className="profile-picuture"
               ></div>
             </Link>

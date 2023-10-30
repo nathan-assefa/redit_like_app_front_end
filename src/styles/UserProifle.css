@@ -384,7 +384,7 @@ label {
 }
 
 .bookmark-post-content {
-  position: absolute;
+  position: ab;
   background-color: black;
   display: block;
 }

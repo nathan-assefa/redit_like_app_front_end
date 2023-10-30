@@ -6,7 +6,7 @@ import SinglePostInCommunity from "../services/SinglePostInCommunity";
 import { useUserProfile } from "../contexts/UserProfileContext";
 import FollowOrUnfollowUser from "./FollowOrUnfollow";
 import MessageIcon from "../icons/MessageIcon";
-import BookMarks from "./BookMarks";
+
 import { useState } from "react";
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {

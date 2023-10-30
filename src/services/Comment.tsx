@@ -180,7 +180,17 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
   return (
     <div className="comment">
       <div className="header">
-        <div className="user-picture"></div>
+        {/* <div className="user-picture"></div> */}
+        <div
+          style={
+            comment.author.profile?.profile_picture
+              ? {
+                  backgroundImage: `url(${comment.author.profile?.profile_picture})`,
+                }
+              : {}
+          }
+          className="user-picture"
+        ></div>
         <span className="name">
           Commented by <span>{comment.author?.first_name}</span>
         </span>

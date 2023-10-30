@@ -46,7 +46,17 @@ const RecentMessages = () => {
                 message.is_read ? "" : "not_recent_msg_read"
               }`}
             >
-              <div className="profile-picture recent-pp"></div>
+              {/* <div className="profile-picture recent-pp"></div> */}
+              <div
+                style={
+                  message.sender.profile?.profile_picture
+                    ? {
+                        backgroundImage: `url(${message.sender.profile?.profile_picture})`,
+                      }
+                    : {}
+                }
+                className="profile-picture recent-pp"
+              ></div>
               <div className="recent-message-content">
                 <p className="recent-m-u-name">{message.sender.first_name}</p>
                 <p className="recent-m-c">{getTitle(message)}</p>
