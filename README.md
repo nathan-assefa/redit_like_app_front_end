@@ -27,8 +27,7 @@ Transitioning to the technical core, Django, with its robust authentication and 
 ##### Create Communities:
 
 - Users can establish their own online communities
-- Users can establish their own online communities
-- Users can establish their own online communities
+- Communities can range from topics like technology, art, or hobbies, enabling users to find or create spaces tailored to their interests.
 
 ##### Create Posts:
 

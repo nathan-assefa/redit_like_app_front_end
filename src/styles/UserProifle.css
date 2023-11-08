@@ -290,7 +290,7 @@ label {
   background-image: url("../images/participants.jpg");
   background-size: cover;
   background-position-y: 42%;
-  border-radius: 50px 50px 0 0;
+  border-radius: 4px 4px 0 0;
 }
 
 .follow-participants {

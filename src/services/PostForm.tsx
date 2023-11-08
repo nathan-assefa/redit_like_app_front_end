@@ -33,7 +33,7 @@ const PostForm: React.FC<PostFormProps> = ({
   };
 
   const [{ title, content }, dispatch] = useReducer(reducer, {
-    title: initialValue.title, // Initialize with the title property
+    title: initialValue.title,
     content: initialValue.content,
   });
 

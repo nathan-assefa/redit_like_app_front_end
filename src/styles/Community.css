@@ -1,15 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Poppins:wght@400;700&display=swap");
 
 .community-detail-wrapper {
-  /* background: #41414e; */
-  background-image: url("../images/4-african-community.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #41414e;
   display: flex;
 }
 
 .community-detail {
   padding: 1em 3em;
+}
+
+.c-detail-wrapper .community-detail {
+  height: 310px;
+}
+
+.community-right-col {
+  margin-left: 3em;
 }
 
 .community-detail .c-name {
@@ -162,4 +167,8 @@
 
 .post-list-in-c {
   margin-bottom: 3em;
+}
+
+.no-count {
+  color: red;
 }

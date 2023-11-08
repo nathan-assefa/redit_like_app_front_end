@@ -7,10 +7,16 @@ import { getPosts } from "../utils/posts";
 
 const UsePostSource = (): {
   post: Post[];
+  isLoading: boolean;
+  isError: boolean;
   search: string;
   setSearch: (search: string) => void;
 } => {
-  const { data: post } = useQuery<Post[]>(["post"], () => getPosts(), {
+  const {
+    data: post,
+    isLoading,
+    isError,
+  } = useQuery<Post[]>(["post"], () => getPosts(), {
     initialData: [],
   });
 
@@ -48,6 +54,8 @@ const UsePostSource = (): {
 
   return {
     post: filteredPost,
+    isLoading,
+    isError,
     search,
     setSearch,
   };

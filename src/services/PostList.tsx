@@ -9,13 +9,15 @@ export const PostList = () => {
 
   return (
     <div className="post-wrapper">
-      <div className="posts-list">
-        {post &&
-          post.map((p) => (
-            <div className="single-post" key={p.id}>
-              <SinglePost post={p} />
-            </div>
-          ))}
+      <div className="posts-list-containser">
+        <div className="posts-list">
+          {post &&
+            post.map((p) => (
+              <div className="single-post" key={p.id}>
+                <SinglePost post={p} />
+              </div>
+            ))}
+        </div>
       </div>
       <div className="community-post">
         <div className="create-post-and-community">

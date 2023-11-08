@@ -59,7 +59,7 @@ export const Post = () => {
           </div>
         </section>
       </div>
-      <div right-column>
+      <div className="right-column">
         <div className="about-community">
           <CommunityDetail community={post.community} />
         </div>

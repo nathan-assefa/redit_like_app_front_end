@@ -26,7 +26,9 @@ const IconForReactions: React.FC<IconBtnProps> = ({
       </span>
       <span
         className={`${
-          children !== null && children !== undefined ? "count-footer" : ""
+          children !== null && children !== undefined
+            ? "count-footer no-count"
+            : ""
         }`}
       >
         {children}

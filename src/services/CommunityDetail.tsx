@@ -9,7 +9,7 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
 
 const CommunityDetail = ({ community }: { community: Community }) => {
   return (
-    <div>
+    <div className="c-detail-wrapper">
       <div className="community-detail top-community-list">
         <div className="community-3"></div>
         <div
