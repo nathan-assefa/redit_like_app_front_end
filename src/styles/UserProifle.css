@@ -121,6 +121,7 @@ label {
   background: #373744;
   width: 270px;
   height: auto;
+  margin-bottom: 2em;
 }
 
 .profile-right-column .recent-articles {

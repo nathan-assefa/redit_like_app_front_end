@@ -224,7 +224,7 @@ const UpdateProfile = () => {
         <div className="profile-right-column">
           <div className="recent-articles">{`${profile?.user.first_name}'s Recent Articles`}</div>
           {filteredPosts.length > 0 ? (
-            filteredPosts.slice(0, 6).map((post) => (
+            filteredPosts.map((post) => (
               <Link
                 to={`/posts/${post.id}`}
                 className="filtered-post single-post"
