@@ -325,7 +325,10 @@ const SinglePost = ({ post }: { post: Post }) => {
             <div className="comment-btn">
               <IconForReactions Icon={Comment} aria-label="comment">
                 <p className="count-comment">
-                  {post.comment_count} <span>Comments</span>
+                  {post.comment_count}{" "}
+                  <span>{`${
+                    post.comment_count > 1 ? "Comments" : "Comment"
+                  }`}</span>
                 </p>
               </IconForReactions>
             </div>
