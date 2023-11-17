@@ -88,6 +88,7 @@ header .container {
   position: fixed;
   bottom: 0;
   left: 0;
+  padding-right: 2em;
   /* bottom: 0.5em; */
   z-index: 9999999;
   background: #20272e;
