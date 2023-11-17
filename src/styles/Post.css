@@ -277,9 +277,9 @@
   font-family: "Poppins";
 }
 
-.count-comment span {
+/* .count-comment span {
   display: none;
-}
+} */
 
 .count-comment {
   color: rgb(214, 202, 202);
