@@ -278,7 +278,7 @@
 }
 
 .count-comment span {
-  display: none;
+  /* display: none; */
   margin-left: 0.3em;
 }
 
