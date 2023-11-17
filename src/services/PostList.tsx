@@ -3,13 +3,25 @@ import SinglePost from "./SinglePost";
 import { usePostList } from "../contexts/PostListContext";
 import TopCommunities from "./TopCommunities";
 import TopUsersProfile from "./TopUserProfile";
+import Magnifier from "../icons/Magnifier";
 
 export const PostList = () => {
-  const { post } = usePostList();
+  const { post, search, setSearch } = usePostList();
 
   return (
     <div className="post-wrapper">
       <div className="posts-list-containser">
+        <div className="search-post-header">
+          <div className="magnifi-icon">
+            <Magnifier />
+          </div>
+          <input
+            className="search"
+            placeholder="Search Posts by Title"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
         <div className="posts-list">
           {post &&
             post.map((p) => (
