@@ -22,7 +22,7 @@ const TopCommunities = () => {
   }
 
   return (
-    <div className="top-community-list">
+    <div className="top-community-list top-com-list-wrapper">
       <div className="community-2"></div>
       <div className="t-names">
         <h3 className="join-top-community">Join our top communities today!</h3>

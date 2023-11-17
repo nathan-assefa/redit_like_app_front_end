@@ -45,7 +45,7 @@ const PostForm: React.FC<PostFormProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit}>
       <div className="post-form-row">
         <div className="input-wrapper">
           <label className="label-for-title" htmlFor="post-title">

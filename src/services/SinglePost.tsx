@@ -72,7 +72,8 @@ const SinglePost = ({ post }: { post: Post }) => {
     title?: string;
     content?: string;
   }
-  const apiUrl: string = "http://localhost:8000/api";
+  // const apiUrl: string = "http://localhost:8000/api";
+  const apiUrl: string = "https://redditclone.pythonanywhere.com/api";
 
   const updatePostMutation = useMutation(
     async (updatedPost: UpdatedPost) => {
@@ -224,7 +225,10 @@ const SinglePost = ({ post }: { post: Post }) => {
             <div className="post-deletion-edition">
               <div
                 className="editing-post"
-                onClick={() => setIsEditing((prev) => !prev)}
+                onClick={() => {
+                  setIsEditing((prev) => !prev);
+                  setHorizontalMenu(false);
+                }}
               >
                 Edit
               </div>
@@ -261,16 +265,28 @@ const SinglePost = ({ post }: { post: Post }) => {
             </div>
           )}
           <div className="post-info">
+            <Link
+              to={`/user_profile/${post.author.profile.id}`}
+              style={
+                post.author.profile?.profile_picture
+                  ? {
+                      backgroundImage: `url(${post.author.profile?.profile_picture})`,
+                    }
+                  : {}
+              }
+              className="post-profile-picture"
+            ></Link>
             <p className="post-author">Posted by {post.author.first_name}</p>
             <p className="post-date">
               <span className="divider">|</span>
-              {<TimeAgo date={new Date(post.created_at)} />}
+              {<TimeAgo date={new Date(post.updated_at)} />}
             </p>
           </div>
           <div className="post-footer">
             <div className="vote-wrapper">
               <div className="post-vote">
                 <IconForReactions
+                  className="up-v"
                   onClick={onPostVote}
                   isActive={postVote}
                   Icon={postVote ? UpvoteArrowActivate : UpvoteArrowDeactivate}
@@ -278,6 +294,7 @@ const SinglePost = ({ post }: { post: Post }) => {
                 />
                 <p className="total-vote">{post.voted_count}</p>
                 <IconForReactions
+                  className="down-v"
                   onClick={onPostDownvote}
                   isActive={postDownvote}
                   Icon={
@@ -307,7 +324,7 @@ const SinglePost = ({ post }: { post: Post }) => {
             </IconForReactions>
             <div className="comment-btn">
               <IconForReactions Icon={Comment} aria-label="comment">
-                <p className="count-comment">{post.comment_count} comments</p>
+                <p className="count-comment">{post.comment_count} Comments</p>
               </IconForReactions>
             </div>
             <div className="save-btn">

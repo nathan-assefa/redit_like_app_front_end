@@ -1,5 +1,168 @@
 .single-post-wrapper {
   display: flex;
+  margin-bottom: 5em;
+}
+
+.left-column {
+  width: 100%;
+}
+
+.single-post-box {
+  margin-right: 0;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comment-box {
+  margin-right: 4.3em;
+  margin-left: -2em;
+}
+
+.single-post {
+  margin-top: 1.5em;
+}
+
+.community-detail {
+  height: 350px;
+  padding: 0;
+}
+
+.c-name-and-button {
+  margin-top: 0.8em;
+}
+
+.about-community {
+  margin-top: 0.5em;
+  margin-bottom: -5.8em;
+}
+
+.asking-membership {
+  color: white;
+  font-size: 16px;
+  font-family: "Poppins";
+  text-align: left;
+  margin-top: -0.25em;
+  padding-left: 1.5em;
+  padding-right: 1.4em;
+}
+
+.c-date-info {
+  margin-left: 1.5em;
+  display: flex;
+  align-items: center;
+}
+
+.c-date-info .date {
+  margin-left: 0.8em;
+  color: #c0b0b0;
+}
+
+.post-deletion-edition {
+  color: white;
+}
+
+.post-deletion-edition {
+  background: rgb(76, 70, 70);
+  position: absolute;
+  left: 12em;
+  padding: 4px 8px;
+  top: 2.6em;
+  border-radius: 6px;
+}
+
+.post-deletion-edition .editing-post:hover {
+  background-color: rgb(89, 82, 82);
+  cursor: pointer;
+}
+
+.post-deletion-edition .delete-post:hover {
+  background-color: rgb(89, 82, 82);
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 885px) {
+  .comment-box {
+    margin-right: 4.3em;
+    margin-left: -6.8em;
+    border-right: 3px solid rgba(93, 85, 85, 0.5);
+  }
+
+  .single-post-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .left-column {
+    max-width: 55%;
+  }
+
+  .single-post {
+    margin-top: 1.5em;
+  }
+
+  .community-detail {
+    height: 350px;
+    padding: 0;
+  }
+
+  .c-name-and-button {
+    margin-top: 0.8em;
+  }
+
+  .about-community {
+    margin-top: 0.5em;
+    margin-bottom: -5.8em;
+  }
+
+  .asking-membership {
+    color: white;
+    font-size: 16px;
+    font-family: "Poppins";
+    text-align: left;
+    margin-top: -0.25em;
+    padding-left: 1.5em;
+    padding-right: 1.4em;
+  }
+
+  .c-date-info {
+    margin-left: 1.5em;
+    display: flex;
+    align-items: center;
+  }
+
+  .c-date-info .date {
+    margin-left: 0.8em;
+    color: #c0b0b0;
+  }
+
+  .post-deletion-edition {
+    color: white;
+  }
+
+  .post-deletion-edition {
+    background: rgb(76, 70, 70);
+    position: absolute;
+    left: 12em;
+    padding: 4px 8px;
+    top: 2.6em;
+    border-radius: 6px;
+  }
+
+  .post-deletion-edition .editing-post:hover {
+    background-color: rgb(89, 82, 82);
+    cursor: pointer;
+  }
+
+  .post-deletion-edition .delete-post:hover {
+    background-color: rgb(89, 82, 82);
+    cursor: pointer;
+  }
+}
+
+/*
+.single-post-wrapper {
+  display: flex;
 }
 
 .left-column {
@@ -67,3 +230,4 @@
   background-color: rgb(89, 82, 82);
   cursor: pointer;
 }
+*/

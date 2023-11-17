@@ -19,7 +19,7 @@ export const PostList = () => {
             ))}
         </div>
       </div>
-      <div className="community-post">
+      <div className="post-page-right-col community-post">
         <div className="create-post-and-community">
           <div className="community-1"></div>
           <p>

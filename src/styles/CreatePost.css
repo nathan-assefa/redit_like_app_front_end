@@ -1,25 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&family=Poppins:wght@400;700&display=swap");
 
 :root {
-  --grayish-color: #b1aeae;
+  --grayish-look-color: #7a7575;
 }
 
 .option-area {
   margin-top: 2em;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .select {
-  background: var(--grayish-color);
-  width: 426px;
-  height: 50px;
-  font-size: 27px;
-  color: #545454;
+  background: var(--grayish-look-color);
+  width: 95%;
+  height: 35px;
+  font-size: 14px;
+  color: #dad1d1;
   font-family: "IBM+Plex+Sans";
   margin-bottom: 2em;
-  border-radius: 9px;
+  border-radius: 4px;
   padding-left: 1.2rem;
-  margin-left: 3em;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -27,9 +28,9 @@
 
 .select-icon {
   position: absolute;
-  top: 1em;
-  left: 29em;
-  z-index: 999;
+  top: 0.5em;
+  left: 90%;
+  z-index: 9;
 }
 
 .comments-title {
@@ -42,9 +43,8 @@
 }
 
 .post-form-row label {
-  margin-left: 4.5em;
-  font-size: 18px;
-  font-weight: bold;
+  margin-left: 1em;
+  font-size: 14px;
   color: rgb(196, 182, 182);
 }
 
@@ -61,34 +61,40 @@
 .post-form-row .post-title {
   display: block;
   resize: none;
-  width: 40%;
-  height: 70px;
+  width: 95%;
+  height: 40px;
   border-radius: 0.5em;
   padding: 0.5em;
-  margin-left: 4.9em;
+  margin-left: 2.9em;
   font-size: inherit;
   font-family: inherit;
   line-height: 1.4;
-  background: var(--grayish-color);
+  background: var(--grayish-look-color);
   color: black;
   margin-top: -1.8em;
-  margin-bottom: 1.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
 }
 
 .post-form-row .post-content {
   display: block;
   resize: none;
-  width: 60%;
-  height: 310px;
+  width: 95%;
+  height: 250px;
   border-radius: 0.5em;
   padding: 0.5em;
-  margin-left: 4.9em;
-  margin-top: 0.4em;
+  margin-left: 2.9em;
   font-size: inherit;
   font-family: inherit;
   line-height: 1.4;
-  background: var(--grayish-color);
+  background: var(--grayish-look-color);
   color: black;
+  margin-top: 0.2em;
+  margin-bottom: 1.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
 }
 
 .post-input:focus {
@@ -98,8 +104,8 @@
 
 .post-submit {
   position: absolute;
-  bottom: 1em;
-  right: 22em;
+  bottom: 0.5em;
+  right: 1em;
   margin-left: 10em;
   padding: 6px 18px;
   border-radius: 20px;
@@ -111,4 +117,74 @@
   align-items: center;
   color: rgb(197, 187, 187);
   cursor: pointer;
+}
+
+@media only screen and (min-width: 885px) {
+  .option-area {
+    display: block;
+  }
+
+  .option-area {
+    margin-top: 2em;
+    position: relative;
+  }
+
+  .select {
+    background: var(--grayish-color);
+    width: 426px;
+    height: 50px;
+    font-size: 27px;
+    color: #545454;
+    font-family: "IBM+Plex+Sans";
+    margin-bottom: 2em;
+    border-radius: 9px;
+    padding-left: 1.2rem;
+    margin-left: 3em;
+  }
+
+  .select-icon {
+    left: 29em;
+    top: 1em;
+  }
+
+  .comments-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .post-form-row label {
+    margin-left: 4.5em;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(196, 182, 182);
+  }
+
+  .post-form-row .post-title {
+    width: 60%;
+    height: 70px;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    margin-left: 4.9em;
+    line-height: 1.4;
+    background: var(--grayish-color);
+    color: black;
+    margin-top: -1.8em;
+    margin-bottom: 1.5em;
+  }
+
+  .post-form-row .post-content {
+    resize: none;
+    width: 60%;
+    height: 310px;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    margin-left: 4.9em;
+    margin-top: 0.4em;
+    background: var(--grayish-color);
+    color: black;
+  }
+
+  .post-submit {
+    bottom: 0.5em;
+    right: 35%;
+  }
 }

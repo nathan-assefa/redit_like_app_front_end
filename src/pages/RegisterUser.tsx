@@ -13,7 +13,8 @@ const RegisterUser = () => {
     confirm_password: string;
     email: string;
   }
-  const apiUrl: string = "http://localhost:8000/api";
+  // const apiUrl: string = "http://localhost:8000/api";
+  const apiUrl: string = "https://redditclone.pythonanywhere.com/api";
 
   const UserRegisterMutation = useMutation(
     async (updatedPost: UpdatedProfile) => {
@@ -74,7 +75,7 @@ const RegisterUser = () => {
   };
 
   return (
-    <div>
+    <div className="registration-container">
       <RegistrationForm
         isLoading={UserRegisterMutation.isLoading}
         isError={UserRegisterMutation.isError}

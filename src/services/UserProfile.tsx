@@ -72,52 +72,57 @@ const UserProfile = () => {
               </Link>
             </div>
           </div>
-          <button
-            className="see-user-info"
-            onClick={() => setSeeProfileDtail((prev) => !prev)}
-          >
-            See more about {profile?.user.first_name}
-          </button>
-          {seeProfileDetail && (
-            <div className="user-pro-related-info">
-              <h3 className=" more-info user-profile-info user-bio-title">
-                Bio
-              </h3>
-              <p className="more-info user-p-con u-bio">
-                {profile?.bio ? profile?.bio : "No Bio yet"}
-              </p>
-              <h3 className=" more-info user-profile-info user-bio-title">
-                Website
-              </h3>
-              <p className="more-info user-p-con u-bio">
-                {profile?.website
-                  ? profile?.website
-                  : "Social media data not provided."}
-              </p>
-              <h3 className=" more-info user-profile-info user-bio-title">
-                Location
-              </h3>
-              <p className="more-info user-p-con u-bio">
-                {profile?.location
-                  ? profile?.location
-                  : "Location details not yet provided."}
-              </p>
-              <h3 className=" more-info user-profile-info user-bio-title">
-                Phone Number
-              </h3>
-              <p className="more-info user-p-con u-bio">
-                {profile?.phone_number
-                  ? profile?.phone_number
-                  : "No phone number information available."}
-              </p>
-            </div>
-          )}
-          <h3 className="more-info user-participation">
-            {`See what ${profile?.user.first_name}'s communities are discussing.`}
-          </h3>
+          <div className="user-information">
+            <button
+              className="see-user-info"
+              onClick={() => setSeeProfileDtail((prev) => !prev)}
+            >
+              See more about {profile?.user.first_name}
+            </button>
+            {seeProfileDetail && (
+              <div className="user-pro-related-info">
+                <h3 className=" more-info user-profile-info user-bio-title">
+                  Bio
+                </h3>
+                <p className="more-info user-p-con u-bio">
+                  {profile?.bio ? profile?.bio : "No Bio yet"}
+                </p>
+                <h3 className=" more-info user-profile-info user-bio-title">
+                  Website
+                </h3>
+                <p className="more-info user-p-con u-bio">
+                  {profile?.website
+                    ? profile?.website
+                    : "Social media data not provided."}
+                </p>
+                <h3 className=" more-info user-profile-info user-bio-title">
+                  Location
+                </h3>
+                <p className="more-info user-p-con u-bio">
+                  {profile?.location
+                    ? profile?.location
+                    : "Location details not yet provided."}
+                </p>
+                <h3 className=" more-info user-profile-info user-bio-title">
+                  Phone Number
+                </h3>
+                <p className="more-info user-p-con u-bio">
+                  {profile?.phone_number
+                    ? profile?.phone_number
+                    : "No phone number information available."}
+                </p>
+              </div>
+            )}
+            <h3 className="more-info user-participation">
+              {`See what ${profile?.user.first_name}'s communities are discussing.`}
+            </h3>
+          </div>
           <div className="posts-list">
             {postsUserParticipates.map((p) => (
-              <div className="single-post user-single-post" key={p.id}>
+              <div
+                className="single-post user-related-act user-single-post"
+                key={p.id}
+              >
                 <SinglePostInCommunity post={p} />
               </div>
             ))}

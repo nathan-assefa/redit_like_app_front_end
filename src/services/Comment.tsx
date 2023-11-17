@@ -34,6 +34,7 @@ import jwt_decode from "jwt-decode";
 import Comments from "./CommentList";
 import CommentForm from "./CommentForm";
 import TimeAgo from "../utils/getTimeAgo";
+import { Link } from "react-router-dom";
 
 const SingleComment = ({ comment }: { comment: Comment }) => {
   const { getReplies } = usePost();
@@ -181,7 +182,8 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
     <div className="comment">
       <div className="header">
         {/* <div className="user-picture"></div> */}
-        <div
+        <Link
+          to={`/user_profile/${comment.author.profile.id}`}
           style={
             comment.author.profile?.profile_picture
               ? {
@@ -190,7 +192,7 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
               : {}
           }
           className="user-picture"
-        ></div>
+        ></Link>
         <span className="name">
           Commented by <span>{comment.author?.first_name}</span>
         </span>

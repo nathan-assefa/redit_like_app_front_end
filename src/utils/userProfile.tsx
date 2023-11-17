@@ -2,7 +2,8 @@ import { Profile } from "../types";
 import fetchData from "./makeRequest";
 import AuthToken from "./AuthToken";
 
-const url: string = "http://localhost:8000/api";
+// const url: string = "http://localhost:8000/api";
+const url: string = "https://redditclone.pythonanywhere.com/api";
 const accessToken: string = AuthToken();
 
 export function getUserProfile(): Promise<Profile | undefined> {

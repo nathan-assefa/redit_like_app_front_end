@@ -116,7 +116,7 @@ const SinglePostInCommunity = ({ post }: { post: Post }) => {
                   Icon={postVote ? UpvoteArrowActivate : UpvoteArrowDeactivate}
                   aria-label="upvote"
                 />
-                <p className="total-vote">{post.voted_count}</p>
+                <p className="total-vote t-v">{post.voted_count}</p>
                 <IconForReactions
                   onClick={onPostDownvote}
                   isActive={postDownvote}
@@ -156,7 +156,6 @@ const SinglePostInCommunity = ({ post }: { post: Post }) => {
                 <p className="save-name">Save</p>
               </IconForReactions>
             </div>
-            {/* <JoinOrLeaveCommunity communityId={post.community.id.toString()} /> */}
           </div>
         </div>
       </div>

@@ -6,6 +6,8 @@ import MessageList from "./ListMessage";
 import MessageForm from "./MessageForm";
 import RecentMessages from "./RecentMessages";
 import { useEffect } from "react";
+import ArrowLeft from "../icons/ArrowLeft";
+import { Link } from "react-router-dom";
 
 const UserMessages = () => {
   const { id: userId } = useParams();
@@ -56,6 +58,9 @@ const UserMessages = () => {
 
   return (
     <div className="all-user-messages">
+      <Link to="/mobile_pop_up_message">
+        <ArrowLeft />
+      </Link>
       <div className="user-messages">
         <div className="m-list">
           <RecentMessages />

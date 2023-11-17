@@ -26,7 +26,7 @@ a {
 .notes-list {
   padding: 0;
   margin: 16px 0;
-  width: 60%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   height: 70vh;
@@ -74,4 +74,10 @@ a {
 
 .not_read:hover {
   background: #4b4747;
+}
+
+@media only screen and (min-width: 832px) {
+  .notes-list {
+    width: 60%;
+  }
 }

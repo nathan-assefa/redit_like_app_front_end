@@ -36,28 +36,30 @@ export const Post = () => {
   return (
     <div className="single-post-wrapper">
       <div className="left-column">
-        <div className="single-post">
+        <div className="single-post single-post-box">
           <SinglePost post={post} />
         </div>
-        <h3 className="comment-header">
-          Write your comment as <span>{username?.toLocaleLowerCase()}</span>
-        </h3>
-        <br />
-        <section>
-          <div>
-            <CommentForm
-              isLoading={createCommentMutation.isLoading}
-              isError={createCommentMutation.isError}
-              autoFocus={true}
-              onSubmit={handleCommentSubmit}
-            />
-          </div>
-          <div className="comment-wrapper">
-            {rootComments != null && rootComments.length > 0 && (
-              <CommentList comments={rootComments} />
-            )}
-          </div>
-        </section>
+        <div className="comment-box">
+          <h3 className="comment-header">
+            Write your comment as <span>{username?.toLocaleLowerCase()}</span>
+          </h3>
+          <br />
+          <section>
+            <div>
+              <CommentForm
+                isLoading={createCommentMutation.isLoading}
+                isError={createCommentMutation.isError}
+                autoFocus={true}
+                onSubmit={handleCommentSubmit}
+              />
+            </div>
+            <div className="comment-wrapper">
+              {rootComments != null && rootComments.length > 0 && (
+                <CommentList comments={rootComments} />
+              )}
+            </div>
+          </section>
+        </div>
       </div>
       <div className="right-column">
         <div className="about-community">

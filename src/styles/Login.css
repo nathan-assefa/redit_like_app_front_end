@@ -30,8 +30,20 @@
   display: block;
 }
 
+.auth-form {
+  /* background: red; */
+  width: 80%;
+  margin-left: 9%;
+}
+
+/* .auth-form form {
+  margin-left: auto;
+  margin-right: auto;
+  background: green;
+} */
+
 .auth-form-wrapper .auth-input {
-  width: 350px;
+  width: 90%;
   height: 38px;
   border-radius: 8px;
   border: none;
@@ -52,4 +64,14 @@
   background: #a5a5ba;
   cursor: pointer;
   margin-top: 1em;
+}
+
+@media only screen and (min-width: 885px) {
+  .auth-form {
+    width: unset;
+    margin-left: unset;
+  }
+  .auth-form-wrapper .auth-input {
+    width: 350px;
+  }
 }

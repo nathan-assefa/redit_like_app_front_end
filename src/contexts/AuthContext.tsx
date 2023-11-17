@@ -37,16 +37,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     const form = e.target as HTMLFormElement;
 
-    const response = await fetch("http://localhost:8000/api/token/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: form.username.value,
-        password: form.password.value,
-      }),
-    });
+    const response = await fetch(
+      "https://redditclone.pythonanywhere.com/api/token/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: form.username.value,
+          password: form.password.value,
+        }),
+      }
+    );
 
     const data = await response.json();
     if (response.status === 200) {
@@ -72,6 +75,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     loginUser,
     logOutUser,
     username: user,
+    authToken,
   };
 
   return (

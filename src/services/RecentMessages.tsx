@@ -39,14 +39,13 @@ const RecentMessages = () => {
   return (
     <div className="recent-messages">
       <div className="recent">
-        {messages.slice(0, 6).map((message) => (
+        {messages.map((message) => (
           <Link to={`/messages/${message.sender.id}`} key={message.id}>
             <div
               className={`user-recent-message ${
                 message.is_read ? "" : "not_recent_msg_read"
               }`}
             >
-              {/* <div className="profile-picture recent-pp"></div> */}
               <div
                 style={
                   message.sender.profile?.profile_picture

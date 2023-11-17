@@ -30,19 +30,23 @@ const ListItem = ({ notification }: { notification: Notification }) => {
   };
 
   return (
-    <Link
-      onClick={notification.is_read ? undefined : onNotificationMark}
-      to={`/posts/${notification.post_id}`}
-    >
-      <div
-        className={`notes-list-item ${notification.is_read ? "" : "not_read"}`}
+    <div className="single-notification">
+      <Link
+        onClick={notification.is_read ? undefined : onNotificationMark}
+        to={`/posts/${notification.post_id}`}
       >
-        <p>{getTitle(notification)}</p>
-        <p>
-          <span>{<TimeAgo date={new Date(notification.updated_at)} />}</span>
-        </p>
-      </div>
-    </Link>
+        <div
+          className={`notes-list-item ${
+            notification.is_read ? "" : "not_read"
+          }`}
+        >
+          <p>{getTitle(notification)}</p>
+          <p>
+            <span>{<TimeAgo date={new Date(notification.updated_at)} />}</span>
+          </p>
+        </div>
+      </Link>
+    </div>
   );
 };
 

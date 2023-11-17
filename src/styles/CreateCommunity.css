@@ -22,11 +22,12 @@
 .community-form-row .community-name {
   display: block;
   resize: none;
-  width: 40%;
+  width: 95%;
   height: 70px;
   border-radius: 0.5em;
   padding: 0.5em;
-  margin-left: 4.9em;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 12px;
   font-family: "Poppins";
   line-height: 1.4;
@@ -61,16 +62,86 @@
 
 .community-submit {
   position: absolute;
-  /* bottom: -0.1em; */
-  right: 34.5em;
-  padding: 6px 18px;
-  border-radius: 20px;
+  bottom: 0.3em;
+  right: 2em;
+  padding: 3px 9px;
+  border-radius: 8px;
   background: #969292;
-  font-size: 22px;
+  font-size: 12px;
   font-family: inherit;
   display: flex;
   border: none;
   align-items: center;
   color: rgb(105, 105, 105);
   cursor: pointer;
+}
+
+@media only screen and (min-width: 885px) {
+  .option-area {
+    position: relative;
+  }
+
+  .community-form-row {
+    margin-top: 2em;
+    position: relative;
+  }
+
+  .community-form-row label {
+    margin-left: 3.7em;
+    font-size: 16px;
+    color: rgb(227, 213, 213);
+  }
+
+  .community-form-row .community-name {
+    display: block;
+    resize: none;
+    width: 40%;
+    height: 70px;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    margin-left: 4.9em;
+    font-size: 12px;
+    font-family: "Poppins";
+    line-height: 1.4;
+    background: var(--grayish-color);
+    letter-spacing: 2px;
+  }
+
+  .community-name-for-form {
+    color: rgb(60, 57, 57);
+    font-size: 16px;
+  }
+
+  .insert-c-name {
+    margin-bottom: 1.3em;
+  }
+
+  .community-form-row .community-description {
+    height: 300px;
+  }
+
+  .post-input:focus {
+    border-color: hsl(235, 100%, 67%);
+    outline: none;
+  }
+
+  .c-input-name {
+    color: rgb(26, 25, 25);
+    font-size: 16px;
+  }
+
+  .community-submit {
+    position: absolute;
+    right: 56%;
+    padding: 4px 16px;
+    border-radius: 20px;
+    background: #969292;
+    font-size: 18px;
+    font-family: inherit;
+    display: flex;
+    border: none;
+    align-items: center;
+    color: rgb(105, 105, 105);
+    cursor: pointer;
+  }
 }

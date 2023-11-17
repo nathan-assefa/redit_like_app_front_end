@@ -4,13 +4,15 @@ import TopCommunities from "./TopCommunities";
 import CommunityRules from "./CommunityRules";
 import CommunityDetail from "./CommunityDetail";
 import JoinOrLeaveCommunity from "./JoinOrLeaveCommunity";
+import { useState } from "react";
 
 export const Community = () => {
   const { community } = useCommunity();
+  const [showposts, setShowPosts] = useState(false);
   return (
     <div className="community-detail-wrapper">
       <div className="community-right-col">
-        <div className="community-detail">
+        <div className="community-details c-details">
           <h1 className="c-name">{community?.name}</h1>
           <p className="no-of-members">
             community membership: {community?.member_count} members
@@ -20,20 +22,33 @@ export const Community = () => {
           </div>
           <p className="c-desctiption">
             <span>Description: </span>
-            {community?.description}
+            {community?.description
+              ? community.description
+              : "No description for this community"}
           </p>
-          <h3>Posts</h3>
-          <div>
-            {community?.posts != null && community?.posts.length > 0 && (
-              <PostsInCommunity posts={community?.posts} />
-            )}
-          </div>
+          <button
+            onClick={() => setShowPosts((prev) => !prev)}
+            className="see-more-posts"
+          >
+            See Posts
+          </button>
+          {showposts && (
+            <div className="posts-in-com">
+              {community?.posts != null && community?.posts.length > 0 && (
+                <PostsInCommunity posts={community?.posts} />
+              )}
+            </div>
+          )}
         </div>
       </div>
       <div className="top-c-lists">
-        {community && <CommunityDetail community={community} />}
+        <div className="c-info-box">
+          {community && <CommunityDetail community={community} />}
+        </div>
         <TopCommunities />
-        <CommunityRules />
+        <div className="c-info-box c-rules-info">
+          <CommunityRules />
+        </div>
       </div>
     </div>
   );

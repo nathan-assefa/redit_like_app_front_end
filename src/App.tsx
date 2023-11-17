@@ -8,6 +8,7 @@ import { Post } from "./services/Post";
 import UserProfile from "./services/UserProfile";
 import { CommunityProvider } from "./contexts/CommunityContext";
 import Notifications from "./services/Notifications";
+import PopUpMessage from "./components/PopUpMessage";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -39,6 +40,10 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/messages/:id" element={<UserMessages />} />
+                <Route
+                  path="/mobile_pop_up_message"
+                  element={<PopUpMessage />}
+                />
                 <Route path="/posts" element={<PostList />} />
                 <Route path="/create_community" element={<CreateCommunity />} />
                 <Route path="/create_post" element={<CreatePost />} />

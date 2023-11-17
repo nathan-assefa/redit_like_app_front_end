@@ -13,6 +13,8 @@
 
 .register-form {
   position: absolute;
+  width: 80%;
+  margin-left: 3em;
 }
 
 .register-label {
@@ -23,7 +25,7 @@
 }
 
 .reg-input {
-  width: 350px;
+  width: 90%;
   height: 38px;
   border-radius: 8px;
   border: none;
@@ -57,3 +59,14 @@
   padding: 8px 16px;
   border-radius: 8px;
 }
+@media only screen and (min-width: 885px) {
+  .register-form {
+    width: unset;
+    margin-left: unset;
+  }
+
+  .reg-input {
+    width: 350px;
+  }
+}
+/* registration-container */
