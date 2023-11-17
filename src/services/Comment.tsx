@@ -220,7 +220,7 @@ const SingleComment = ({ comment }: { comment: Comment }) => {
             Icon={commentVote ? UpvoteArrowActivate : UpvoteArrowDeactivate}
             aria-label="upvote"
           />
-          <p className="total-vote">{comment.voted_count}</p>
+          <p className="total-vote comment-total-vote">{comment.voted_count}</p>
           <IconForReactions
             onClick={onCommentDownvote}
             isActive={commentDownvote}

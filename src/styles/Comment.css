@@ -36,7 +36,7 @@
   background: #515050;
   border-radius: 0.5em;
   padding: 0.5em;
-  margin-left: 5.8em;
+  margin-left: 2.8em;
   color: white;
   font-size: inherit;
   font-family: inherit;
@@ -65,7 +65,7 @@
 
 .comment-wrapper {
   /* border: 1px solid red; */
-  margin-left: 5.8em;
+  margin-left: 2.8em;
   margin-top: 2.6em;
 }
 
@@ -118,7 +118,7 @@
   color: rgb(209, 204, 204);
   /* width: 600px; */
   height: auto;
-  font-size: 18px;
+  font-size: 13px;
   font-weight: lighter;
   letter-spacing: 0.017rem;
   width: 120%;
@@ -138,6 +138,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.comment-total-vote {
+  margin-top: 1em;
+  font-size: 14px;
 }
 
 .vote p {
@@ -287,10 +292,16 @@
   }
   .comment .message {
     width: unset;
+    font-size: 16px;
   }
 
   .comment .header {
     width: unset;
+  }
+
+  .comment-wrapper {
+    /* border: 1px solid red; */
+    margin-left: 5.8em;
   }
 }
 
