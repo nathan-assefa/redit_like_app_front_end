@@ -15,7 +15,7 @@ import IconBtn from "../IconButtons/HeaderIconBtn";
 import { getUserProfile } from "../utils/userProfile";
 import { Profile } from "../types";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useCommunity from "../hooks/useCommunity";
 import RecentMessages from "../services/RecentMessages";
 import AllUserProfile from "../services/AllUserProfiles";
@@ -78,13 +78,22 @@ const Header = () => {
   const [popular, setPopular] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [showCommunities, setShowCommunities] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { search, setSearch } = usePostList();
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setLoading(true);
+    }, 20000);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <>
       <header>
-        {username && (
+        {loading && username && (
           <div className="user-auth">
             <div className="profile-info">
               {username && (
@@ -93,7 +102,7 @@ const Header = () => {
                 </p>
               )}
               {profileMenu &&
-                (username ? (
+                (loading && username ? (
                   <div className="user-setting">
                     <Link
                       onClick={() => setProfileMenu(false)}
@@ -204,10 +213,14 @@ const Header = () => {
         )}
         <div className="container">
           <Link to="/posts" className="logo">
-            Reddit<span>Clone</span>
+            {loading && (
+              <>
+                Reddit<span>Clone</span>
+              </>
+            )}
           </Link>
           <nav>
-            {username && (
+            {loading && username && (
               <div className="home-menu">
                 <div className="home-menu-icon">
                   <HomeIcon />
@@ -223,7 +236,7 @@ const Header = () => {
                 </div>
               </div>
             )}
-            {username && (
+            {loading && username && (
               <div className="search-header">
                 <div className="magnifier">
                   <Magnifier />
@@ -236,7 +249,7 @@ const Header = () => {
                 />
               </div>
             )}
-            {username && (
+            {loading && username && (
               <div className="header-icons">
                 <div className="icon-wrapper mobile-home-icon">
                   <div className="icon create-post-icon">
@@ -310,7 +323,7 @@ const Header = () => {
               </div>
             )}
           </nav>
-          {username && (
+          {username && loading && (
             <div onClick={() => setToggleMenu(true)} className="open-menu">
               <Menu />
             </div>
