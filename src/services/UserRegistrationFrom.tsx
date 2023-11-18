@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type UserRegistrationFormProps = {
   isLoading: boolean;
@@ -37,8 +37,6 @@ const RegistrationForm: React.FC<UserRegistrationFormProps> = ({
     | { type: "setFirstName"; payload: string }
     | { type: "setLastName"; payload: string }
     | { type: "setEmail"; payload: string };
-
-  const navigate = useNavigate();
 
   const reducer = (state: PostState, action: PostAction) => {
     switch (action.type) {
@@ -78,7 +76,7 @@ const RegistrationForm: React.FC<UserRegistrationFormProps> = ({
       first_name,
       last_name,
       email,
-    }).then(() => navigate("/login"));
+    });
   }
 
   return (

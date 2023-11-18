@@ -80,8 +80,9 @@ a {
 .u-message {
   color: rgb(250, 237, 237);
   font-family: "IBM+Plex+Sans";
-  font-size: 18px;
+  font-size: 12px;
   margin-right: 0.9em;
+  padding-left: 0.6em;
 }
 
 .u-date-formatter {
@@ -126,7 +127,7 @@ a {
 .all-user-messages .send-message {
   position: fixed;
   background: none;
-  left: 93%;
+  left: 90%;
   bottom: 6em;
   z-index: 9999;
 }
@@ -238,7 +239,7 @@ a {
   .u-message {
     color: rgb(250, 237, 237);
     font-family: "IBM+Plex+Sans";
-    font-size: 18px;
+    font-size: 14px;
     margin-right: 0.9em;
   }
 

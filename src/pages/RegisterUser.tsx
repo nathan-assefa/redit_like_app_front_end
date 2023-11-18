@@ -2,9 +2,11 @@ import RegistrationForm from "../services/UserRegistrationFrom";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RegisterUser = () => {
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
   interface UpdatedProfile {
     first_name: string;
     last_name: string;
@@ -67,6 +69,8 @@ const RegisterUser = () => {
         last_name: formData.last_name,
         email: formData.email,
       });
+
+      navigate("/login");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         setError(error.response?.data?.error || "An error occurred");

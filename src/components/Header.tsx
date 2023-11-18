@@ -253,20 +253,35 @@ const Header = () => {
               <div className="header-icons">
                 <div className="icon-wrapper mobile-home-icon">
                   <div className="icon create-post-icon">
-                    <Link to="/posts">
+                    <Link
+                      onClick={() => {
+                        setShowMessages(false);
+                      }}
+                      to="/posts"
+                    >
                       <HomeIcon />
                     </Link>
                   </div>
                 </div>
                 <div className="icon-wrapper">
                   <div className="icon create-post-icon">
-                    <Link to="create_post">
+                    <Link
+                      onClick={() => {
+                        setShowMessages(false);
+                      }}
+                      to="create_post"
+                    >
                       <CreatePost />
                     </Link>
                   </div>
                 </div>
                 <div className="icon-wrapper">
-                  <Link to="notifications">
+                  <Link
+                    onClick={() => {
+                      setShowMessages(false);
+                    }}
+                    to="notifications"
+                  >
                     <div className="icon notification-icon">
                       <IconBtn
                         onClick={onClearNotificationCount}
@@ -311,7 +326,12 @@ const Header = () => {
                   </div>
                 )}
                 <div onClick={() => setIsOpen(true)} className="icon-wrapper">
-                  <div className="icon setting-icon">
+                  <div
+                    onClick={() => {
+                      setShowMessages(false);
+                    }}
+                    className="icon setting-icon"
+                  >
                     <GroupIcon />
                   </div>
                 </div>

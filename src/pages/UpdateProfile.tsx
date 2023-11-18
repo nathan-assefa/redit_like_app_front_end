@@ -68,6 +68,7 @@ const UpdateProfile = () => {
         const response = await axios.patch(url, data, { headers });
         return response.data;
       } catch (error) {
+        console.log(error);
         throw error;
       }
     },
