@@ -58,7 +58,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setUser(jwt_decode<{ username: string }>(accessToken).username);
       localStorage.setItem("authTokens", JSON.stringify(data));
       navigate("/");
-      // window.location.reload();
+      window.location.reload();
     } else {
       alert("Something went wrong");
     }
